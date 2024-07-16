@@ -4,13 +4,13 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-import re
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
-    match = re.search(r'\((.*?)\)', text)
-    if match:
-        return match.group(1)
+    start = text.find('(')
+    end = text.find(')')
+    if start != -1 and end != -1 and start < end:
+        return text[start+1:end]
     return text
 
 st.set_page_config(page_title="SCALE Analysis",page_icon=":bar_chart:",layout="wide")
