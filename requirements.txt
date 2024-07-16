@@ -1,6 +1,5 @@
-streamlit
-pandas
+streamlit==1.32.0
+pandas=2.2.1
 wordcloud
-matplotlib
-plotly
-re
+matplotlib==3.8.0
+plotly==5.22.0
