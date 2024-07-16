@@ -1,8 +1,7 @@
 streamlit
 pandas
 wordcloud
-matplotlib.pyplot
-plotly.express
-plotly.graph_objects
+matplotlib
+plotly
 string
 re
