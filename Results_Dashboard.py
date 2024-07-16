@@ -17,6 +17,9 @@ st.set_page_config(page_title="SCALE Analysis",page_icon=":bar_chart:",layout="w
 
 st.title(":bar_chart: SCALE Analysis")
 
+file = "PRE_RAW_COMPLETED_240711.xlsx"
+df = pd.read_excel(file)
+
 tab3, tab1, tab2 = st.tabs([":male-technologist: Data", ":large_green_circle: Pre-Intervetion", ":large_orange_circle: Post-Intervention"])
 
 # Extract abbreviations for "College" and "School" columns
