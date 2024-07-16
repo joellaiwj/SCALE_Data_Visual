@@ -1,0 +1,8 @@
+streamlit
+pandas
+wordcloud
+matplotlib.pyplot
+plotly.express
+plotly.graph_objects
+string
+re
