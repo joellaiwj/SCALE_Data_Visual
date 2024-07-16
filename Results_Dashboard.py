@@ -4,7 +4,6 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-import string
 import re
 
 # Function to extract abbreviation from text in brackets
@@ -76,7 +75,7 @@ with tab1:
         '2.1 (Q4_A_2)', '2.1 (Q4_A_1)']
         
         # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
-        new_labels = list(string.ascii_uppercase[:len(Question_4)])
+        new_labels = [chr(65 + i) for i in range(len(Question_4))]
         column_label_mapping = dict(zip(Question_4, new_labels[::-1]))
         
         # Convert numerical responses to Likert scale labels
@@ -306,7 +305,7 @@ with tab1:
         '3.3 (Q11_A_2)', '3.3 (Q11_A_1)']
         
         # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
-        new_labels = list(string.ascii_uppercase[:len(Question_11)])
+        new_labels = [chr(65 + i) for i in range(len(Question_11))]
         column_label_mapping = dict(zip(Question_11, new_labels[::-1]))
         
         # Convert numerical responses to Likert scale labels
@@ -410,7 +409,7 @@ with tab1:
         Question_13 = ['3.6 (Q13_A_3)', '3.6 (Q13_A_2)', '3.6 (Q13_A_1)']
         
         # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
-        new_labels = list(string.ascii_uppercase[:len(Question_13)])
+        new_labels = [chr(65 + i) for i in range(len(Question_13))]
         column_label_mapping = dict(zip(Question_13, new_labels[::-1]))
         
         # Convert numerical responses to Likert scale labels
@@ -571,14 +570,3 @@ with tab1:
 
 with tab2:
     st.subheader(":red[In Progress...]")
-
-
-
-
-
-
-
-
-    
-    
-    
