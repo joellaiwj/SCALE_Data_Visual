@@ -4,3 +4,4 @@ wordcloud
 matplotlib==3.8.0
 plotly==5.22.0
 openpyxl==3.1.2
+seaborn==0.13.2
