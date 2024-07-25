@@ -24,8 +24,8 @@ st.set_page_config(page_title="SCALE Analysis",page_icon=":bar_chart:",layout="w
 
 st.title(":bar_chart: SCALE Analysis")
 
-df_pre = pd.read_excel(PRE_RAW_COMPLETED_240711.xlsx)
-df_post = pd.read_excel(POST_RAW_COMPLETED_240711.xlsx)
+df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
+df_post = pd.read_excel("POST_RAW_COMPLETED_240711.xlsx")
 
 # Extract abbreviations for "College" and "School" columns
 df_pre['College'] = df_pre['College'].apply(extract_abbreviation)
