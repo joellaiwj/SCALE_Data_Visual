@@ -620,7 +620,7 @@ with tabs[1]:
             """, unsafe_allow_html=True)
         
         # Display the table with distribution bars
-        st.write(render_dataframe(df_pre), ,use_container_width=True, unsafe_allow_html=True)
+        st.write(render_dataframe(df_pre), use_container_width=True, unsafe_allow_html=True)
     
     with col8_2:
         distribution_explain = "**Distribution:** A visual representation of how many times each choice was ranked. "
