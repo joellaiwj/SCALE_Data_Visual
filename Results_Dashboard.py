@@ -10,7 +10,6 @@ import scipy
 from scipy import stats
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
-from scipy.cluster.hierarchy import linkage, dendrogram
 from matplotlib.colors import ListedColormap
 
 # Function to extract abbreviation from text in brackets
