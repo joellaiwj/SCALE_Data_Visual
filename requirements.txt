@@ -7,4 +7,5 @@ plotly==5.22.0
 openpyxl==3.1.2
 seaborn
 scipy
+scipy.cluster
 scikit-learn==1.1.3
