@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-import scipy as *
+import scipy
 from scipy import stats
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
