@@ -72,7 +72,7 @@ with tabs[1]:
         counts_college.columns = ['College', 'Count']
         fig_college = px.pie(counts_college, values='Count', names='College')
         fig_college.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
-        st.plotly_chart(fig_college)
+        st.plotly_chart(fig_college,use_container_width=True)
     
     with col1_2:
         ##### SCHOOL #####
@@ -81,7 +81,7 @@ with tabs[1]:
         counts_school.columns = ['School', 'Count']
         fig_school = px.pie(counts_school, values='Count', names='School')
         fig_school.update_layout(legend=dict(x=0.0,y=1,traceorder='normal'))
-        st.plotly_chart(fig_school)
+        st.plotly_chart(fig_school,use_container_width=True)
         
     with col1_3:
         ##### YEAR OF STUDY #####
@@ -90,7 +90,7 @@ with tabs[1]:
         counts_study.columns = ['Year', 'Count']
         fig_study = px.pie(counts_study, values='Count', names='Year')
         fig_study.update_layout(legend=dict(x=0.75,y=1,traceorder='normal'))
-        st.plotly_chart(fig_study)
+        st.plotly_chart(fig_study,use_container_width=True)
     
     st.header(":green[Response to Survey Questions]")
     
@@ -176,7 +176,7 @@ with tabs[1]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
     
     with col2_2:
         # List of specific columns to be plotted
@@ -202,7 +202,7 @@ with tabs[1]:
         'Survey Question': Question_4_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
     
     col3_1, col3_2, col3_3 = st.columns((1,3,1))
     with col3_2:
@@ -242,7 +242,7 @@ with tabs[1]:
             label.set_x(-0.015)
         
         plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
-        st.pyplot(cluster_map.fig)
+        st.pyplot(cluster_map.fig,use_container_width=True)
         
     col4_1, col4_2 = st.columns((20,1))
     
@@ -307,7 +307,7 @@ with tabs[1]:
             height=800   # Set the height of the figure
         )
         
-        st.plotly_chart(fig)
+        st.plotly_chart(fig,use_container_width=True)
     
     
     # Get unique values for the filter column
@@ -341,7 +341,7 @@ with tabs[1]:
                 plt.figure(figsize=(10, 5))
                 plt.imshow(wordcloud, interpolation='bilinear')
                 plt.axis("off")
-                st.pyplot(plt)
+                st.pyplot(plt,use_container_width=True)
         
     with col5_2:
         st.markdown("The important skills that I currently lack are:")
@@ -361,7 +361,7 @@ with tabs[1]:
                 plt.figure(figsize=(10, 5))
                 plt.imshow(wordcloud, interpolation='bilinear')
                 plt.axis("off")
-                st.pyplot(plt)
+                st.pyplot(plt,use_container_width=True)
     
     col6_1, col6_2 = st.columns((2,1))
     
@@ -443,7 +443,7 @@ with tabs[1]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
         
     with col6_2:
         # List of specific columns to be plotted
@@ -465,7 +465,7 @@ with tabs[1]:
         'Survey Question': Question_11_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
         
     col7_1, col7_2 = st.columns((2,1))
     
@@ -544,7 +544,7 @@ with tabs[1]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
         
     with col7_2:
         # List of specific columns to be plotted
@@ -559,7 +559,7 @@ with tabs[1]:
         'Survey Question': Question_13_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 
     col8_1, col8_2 = st.columns((2,1))
     
@@ -611,7 +611,7 @@ with tabs[1]:
         st.markdown("""
             <style>
             .dataframe th:nth-child(3), .dataframe td:nth-child(3) {
-                min-width: 700px;
+                min-width: 400px;
             }
             .dataframe th {
                 text-align: center;
@@ -620,7 +620,7 @@ with tabs[1]:
             """, unsafe_allow_html=True)
         
         # Display the table with distribution bars
-        st.write(render_dataframe(df_pre), unsafe_allow_html=True)
+        st.write(render_dataframe(df_pre), ,use_container_width=True, unsafe_allow_html=True)
     
     with col8_2:
         distribution_explain = "**Distribution:** A visual representation of how many times each choice was ranked. "
@@ -714,7 +714,7 @@ with tabs[2]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
     
     with col1_2:
         st.markdown("Based on what you now know, consider where you were :red[**AFTER**] using InPlace. Indicate your agreement to the following statements.")
@@ -791,7 +791,7 @@ with tabs[2]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
     
     with col1_3:
         st.markdown("I had/have")
@@ -814,7 +814,7 @@ with tabs[2]:
         'Survey Question': Question_1_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 
     col2_1, col2_2 = st.columns((6,2))
     with col2_1:
@@ -835,7 +835,7 @@ with tabs[2]:
             axes[i].set_xlim(-4,4)
             axes[i].set_ylim(0,71)
         plt.tight_layout()
-        st.pyplot(fig)
+        st.pyplot(fig,use_container_width=True)
 
     with col2_2:
         # Paired t-test
@@ -859,7 +859,7 @@ with tabs[2]:
         summary_table = pd.DataFrame.from_dict(results, orient='index')
         summary_table['effect_size'] = pd.Series(effect_sizes)
         
-        st.dataframe(summary_table,height=(len(column_label_mapping)+1)*35+3,width=400,hide_index=False)
+        st.dataframe(summary_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=False)
     
     st.subheader(":blue[Construct Study of InPlace]")
     col3_1, col3_2 = st.columns((2,1))
@@ -940,7 +940,7 @@ with tabs[2]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
         
     with col3_2:
         # List of specific columns to be plotted
@@ -960,7 +960,7 @@ with tabs[2]:
         'Survey Question': Question_4_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
         
     col4_1, col4_2 = st.columns((2,1))
     
@@ -1039,7 +1039,7 @@ with tabs[2]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
         
     with col4_2:
         st.markdown("If InPlace is made accessible to me beyond graduation,")
@@ -1055,7 +1055,7 @@ with tabs[2]:
         'Survey Question': Question_5_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
     
     col5_1, col5_2 = st.columns((2,1))
     
@@ -1134,7 +1134,7 @@ with tabs[2]:
             legend=dict(traceorder='reversed')
             )
         
-        st.plotly_chart(fig_diverging)
+        st.plotly_chart(fig_diverging,use_container_width=True)
         
     with col5_2:
         # List of specific columns to be plotted
@@ -1153,4 +1153,4 @@ with tabs[2]:
         'Survey Question': Question_6_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,width=700,hide_index=True)
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
