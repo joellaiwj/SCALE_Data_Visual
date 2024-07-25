@@ -55,7 +55,7 @@ with tabs[0]:
 with tabs[1]:
     st.subheader("Filter by College:")
     # Add a selectbox for filtering by college
-    selected_college = st.sidebar.selectbox("",options=["All"] + df_pre['College'].unique().tolist())
+    selected_college = st.selectbox("",options=["All"] + df_pre['College'].unique().tolist())
 
     # Filter dataframe based on the selected college
     if selected_college != "All":
