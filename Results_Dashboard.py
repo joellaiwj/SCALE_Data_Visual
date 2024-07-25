@@ -239,9 +239,10 @@ with tabs[1]:
         # Adjust y-tick labels: control the shift up
         for label in cluster_map.ax_heatmap.yaxis.get_majorticklabels():
             label.set_verticalalignment('center')
-            label.set_position((label.get_position()[0], label.get_position()[1] + 0.5))  # Shift up by 0.5 units
-            #label.set_x(-0.015)  # Shift left by 0.1 units
-    
+            label.set_position((label.get_position()[0], label.get_position()[1] + 0.5))
+            label.set_x(-0.015)
+        
+        plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
         st.pyplot(cluster_map.fig)
         
     col4_1, col4_2 = st.columns((20,1))
