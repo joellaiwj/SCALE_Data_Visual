@@ -1,6 +1,6 @@
 streamlit==1.36.0
 pandas==2.2.1
-scipy==1.14.0
+scipy>=1.14.0
 numpy==1.26.4
 wordcloud
 matplotlib==3.8.0
