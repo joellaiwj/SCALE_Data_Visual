@@ -5,10 +5,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
+import scipy as *
 from scipy import stats
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
-#from scipy.cluster.hierarchy import linkage, dendrogram
+from scipy.cluster.hierarchy import linkage, dendrogram
 from matplotlib.colors import ListedColormap
 
 # Function to extract abbreviation from text in brackets
