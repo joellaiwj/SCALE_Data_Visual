@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 from scipy import stats
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
-#from scipy.cluster.hierarchy import linkage, dendrogram
+from scipy.cluster.hierarchy import linkage, dendrogram
 
 from matplotlib.colors import ListedColormap
 
