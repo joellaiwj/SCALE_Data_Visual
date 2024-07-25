@@ -1,10 +1,10 @@
 streamlit<=1.36.0
 pandas<=2.2.1
-scipy<=1.14.0
 numpy<=1.26.4
 wordcloud
 matplotlib<=3.8.0
 plotly<=5.22.0
 openpyxl<=3.1.2
 seaborn<=0.13.2
+scipy<=1.14.0
 scikit-learn<=1.1.3
