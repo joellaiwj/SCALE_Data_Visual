@@ -237,9 +237,6 @@ with tabs[1]:
         # Transpose the data to have questions as rows and responses as columns
         #transposed_data = standardized_data.T
 
-        # Using sns.clustermap with the same method and metric
-        sns_clustermap = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, cbar_pos=None, linewidths=2.0, linecolor='black')
-
         # Plot the clustermap with boxes
         cluster_map = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, figsize=(20, 10), 
                                      dendrogram_ratio=(.1, .1), cbar_pos=None, 
@@ -256,7 +253,6 @@ with tabs[1]:
         
         plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
         st.pyplot(cluster_map.fig,use_container_width=True)
-        st.pyplot(sns_clustermap.fig,use_container_width=True)
         
     col4_1, col4_2 = st.columns((20,1))
     
