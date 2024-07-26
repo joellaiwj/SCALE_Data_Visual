@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 import scipy as sp
 
 from scipy import stats
-from scipy.stats import mannwhitneyu
+from scipy.stats import mannwhitneyu, norm
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
 from matplotlib.colors import ListedColormap
@@ -1305,17 +1305,22 @@ with tabs[3]:
                 stem_values = stem_cluster_data.values.flatten()
                 shape_values = shape_cluster_data.values.flatten()
         
-                # Perform the Mann-Whitney U test
-                stat, p_value = mannwhitneyu(stem_values, shape_values, alternative='two-sided')
-                mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value)
-    
+                # Calculate the effect size
+                n1 = len(stem_values)
+                n2 = len(shape_values)
+                N = n1 + n2
+                z = norm.ppf(p_value / 2) if p_value != 0 else 0  # Convert p-value to Z-score
+                r = z / np.sqrt(N)  # Effect size
+                
+                mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value, r)
         
             for clusters, result in mannwhitney_results.items():
                 stem_cluster, shape_cluster = clusters
-                stat, p_value = result
-                st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
-                st.write(f"  - U-statistic: {stat:.4f}")
+                stat, p_value, effect_size = result
+                st.write(f"STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:")
+                st.write(f"  - U statistic: {stat:.4f}")
                 st.write(f"  - P-value: {p_value:.4f}")
+                st.write(f"  - Effect size (r): {effect_size:.4f}")
     
     
     
