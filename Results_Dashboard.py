@@ -1171,7 +1171,7 @@ with tabs[3]:
 
     col1_1, col1_2, col1_3 = st.columns((3,3,1))
     with col1_1:
-        st.subheader("Question CLuster Analysis by Discipline")
+        st.subheader("Question Cluster Analysis of Factors Influencing Students' Elective Choice by Discipline")
         columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
             '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
             '2.1 (Q4_A_6)', '2.1 (Q4_A_5)', '2.1 (Q4_A_4)', '2.1 (Q4_A_3)',
