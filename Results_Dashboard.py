@@ -1281,24 +1281,16 @@ with tabs[3]:
         shape_means = np.array(list(shape_cluster_means.values())).reshape(-1, 1)
     
         distances = cdist(stem_means, shape_means, metric='cityblock')  # Using Manhattan distance (cityblock)
-        st.write("\nDistances between STEM and SHAPE cluster means:")
-        st.write(distances)
     
         # Find the nearest cluster in SHAPE for each cluster in STEM
         nearest_clusters = np.argmin(distances, axis=1)
-        st.write("\nNearest SHAPE cluster for each STEM cluster:")
-        for i, shape_cluster in enumerate(nearest_clusters):
-            st.write(f"STEM Cluster {i + 1} -> SHAPE Cluster {shape_cluster + 1}")
     
+    with col1_4:    
         # Mapping the clusters with minimal distance
         cluster_pairings = {}
         for i, shape_cluster in enumerate(nearest_clusters):
             stem_cluster = i + 1
             cluster_pairings[stem_cluster] = shape_cluster + 1
-    
-        st.write("\nCluster pairings based on minimal distance:")
-        for stem_cluster, shape_cluster in cluster_pairings.items():
-            st.write(f"STEM Cluster {stem_cluster} is closest to SHAPE Cluster {shape_cluster}")
     
         # Perform Mann-Whitney U test on all records in the cluster pairings
         mannwhitney_results = {}
@@ -1314,7 +1306,7 @@ with tabs[3]:
             stat, p_value = mannwhitneyu(stem_values, shape_values, alternative='two-sided')
             mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value)
     
-        st.write("\nMann-Whitney U Test Results for Cluster Pairings:")
+        st.write("\nMann-Whitney U Test Results for Nearest Cluster Pairings:")
         for clusters, result in mannwhitney_results.items():
             stem_cluster, shape_cluster = clusters
             stat, p_value = result
