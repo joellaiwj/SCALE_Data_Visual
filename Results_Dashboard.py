@@ -1196,7 +1196,7 @@ with tabs[3]:
         shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
         
         # Define number of clusters, k
-        k = 3
+        k = 2
         
         # Plotting dendrograms
         fig, axes = plt.subplots(1, 2, figsize=(16, 8))
