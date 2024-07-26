@@ -600,7 +600,7 @@ with tabs[1]:
         colors = ['#ffffff', '#de425b', '#f3babc', '#aecdc2', '#488f31', '#ffffff']
         
         # Create DataFrame
-        df_pre = pd.DataFrame(data)
+        df_pre_8 = pd.DataFrame(data)
         
         # Function to create HTML for the distribution bars with centering
         def create_distribution_bar(percentages, colors):
@@ -611,12 +611,12 @@ with tabs[1]:
             return bar_html
         
         # Apply the function to create the Distribution column with HTML bars
-        df_pre['Distribution'] = df_pre['Distribution'].apply(lambda x: create_distribution_bar(x, colors))
+        df_pr3_8['Distribution'] = df_pre_8['Distribution'].apply(lambda x: create_distribution_bar(x, colors))
         
         # Convert DataFrame to HTML
-        def render_dataframe(df_pre):
-            df_pre_html = df_pre.to_html(escape=False, index=False)
-            return df_pre_html
+        def render_dataframe(df_pre_8):
+            df_html = df_pre_8.to_html(escape=False, index=False)
+            return df_html
         
         # Inject custom CSS to widen the Distribution column and center headers
         st.markdown("""
@@ -631,7 +631,7 @@ with tabs[1]:
             """, unsafe_allow_html=True)
         
         # Display the table with distribution bars
-        st.write(render_dataframe(df_pre), use_container_width=True, unsafe_allow_html=True)
+        st.write(render_dataframe(df_pre_8), use_container_width=True, unsafe_allow_html=True)
     
     with col8_2:
         distribution_explain = "**Distribution:** A visual representation of how many times each choice was ranked. "
