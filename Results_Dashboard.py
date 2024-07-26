@@ -8,11 +8,12 @@ import plotly.graph_objects as go
 import scipy as sp
 
 from scipy import stats
-from scipy.stats import ttest_ind
+from scipy.stats import mannwhitneyu
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
 from matplotlib.colors import ListedColormap
 from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
+from scipy.spatial.distance import cdist
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
@@ -1228,6 +1229,7 @@ with tabs[3]:
         st.pyplot(fig,use_container_width=True)
 
     with col1_2:
+        k = k+1
         # Get cluster assignments for STEM and SHAPE groups
         stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
         shape_clusters = fcluster(shape_linkage, k, criterion='maxclust')
