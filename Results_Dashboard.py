@@ -240,7 +240,7 @@ with tabs[1]:
         # Plot the clustermap with boxes
         cluster_map = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, figsize=(20, 10), 
                                      dendrogram_ratio=(.1, .1), cbar_pos=None, 
-                                     linewidths=3.0, linecolor='black')
+                                     linewidths=2.0, linecolor='black')
         
         cluster_map.ax_heatmap.set_xticks(np.arange(len(record_ids))+0.5)
         cluster_map.ax_heatmap.set_xticklabels(record_ids, rotation=45, ha='right', fontsize=6)
@@ -253,7 +253,6 @@ with tabs[1]:
         
         plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
         st.pyplot(cluster_map.fig,use_container_width=True)
-        st.pyplot(sns_clustermap.fig,use_container_width=True)
         
     col4_1, col4_2 = st.columns((20,1))
     
