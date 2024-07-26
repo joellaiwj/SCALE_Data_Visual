@@ -1168,105 +1168,110 @@ with tabs[2]:
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 with tabs[3]:
     df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
-    
-    columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
-        '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
-        '2.1 (Q4_A_6)', '2.1 (Q4_A_5)', '2.1 (Q4_A_4)', '2.1 (Q4_A_3)',
-        '2.1 (Q4_A_2)', '2.1 (Q4_A_1)']
-    # Separate STEM and SHAPE Disciplines
-    stem_data = df_pre[df_pre['Discipline'] == 'STEM'][columns]
-    shape_data = df_pre[df_pre['Discipline'] == 'SHAPE'][columns]
-    
-    # Relabel columns to A-N
-    new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(columns))]
-    stem_data.columns = new_column_labels
-    shape_data.columns = new_column_labels
-    
-    # Transpose the data to cluster questions (columns)
-    stem_data_transposed = stem_data.T
-    shape_data_transposed = shape_data.T
-    
-    # Hierarchical clustering for STEM Discipline questions
-    stem_linkage = linkage(stem_data_transposed, method='ward', metric='euclidean')
-    
-    # Hierarchical clustering for SHAPE Discipline questions
-    shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
-    
-    # Define number of clusters, k
-    k = 3
-    
-    # Plotting dendrograms
-    fig, axes = plt.subplots(1, 2, figsize=(16, 8))
-    
-    # Dendrogram for STEM group questions
-    dendrogram(
-        stem_linkage,
-        ax=axes[0],
-        labels=stem_data_transposed.index,
-        color_threshold=stem_linkage[-k, 2]  # Color the top k+1 clusters
-    )
-    axes[0].set_title('STEM Discipline')
-    axes[0].tick_params(axis='y', which='both', left=False, labelleft=False)
-    
-    # Dendrogram for SHAPE group questions
-    dendrogram(
-        shape_linkage,
-        ax=axes[1],
-        labels=shape_data_transposed.index,
-        color_threshold=shape_linkage[-k, 2]  # Color the top k+1 clusters
-    )
-    axes[1].set_title('SHAPE Discipline')
-    axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
 
-    st.pyplot(fig,use_container_width=True)
+    col1_1, col1_2, col1_3 = st.columns((3,3,1))
+    with col1_1:
+        columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
+            '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
+            '2.1 (Q4_A_6)', '2.1 (Q4_A_5)', '2.1 (Q4_A_4)', '2.1 (Q4_A_3)',
+            '2.1 (Q4_A_2)', '2.1 (Q4_A_1)']
+        # Separate STEM and SHAPE Disciplines
+        stem_data = df_pre[df_pre['Discipline'] == 'STEM'][columns]
+        shape_data = df_pre[df_pre['Discipline'] == 'SHAPE'][columns]
+        
+        # Relabel columns to A-N
+        new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(columns))]
+        stem_data.columns = new_column_labels
+        shape_data.columns = new_column_labels
+        
+        # Transpose the data to cluster questions (columns)
+        stem_data_transposed = stem_data.T
+        shape_data_transposed = shape_data.T
+        
+        # Hierarchical clustering for STEM Discipline questions
+        stem_linkage = linkage(stem_data_transposed, method='ward', metric='euclidean')
+        
+        # Hierarchical clustering for SHAPE Discipline questions
+        shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
+        
+        # Define number of clusters, k
+        k = 3
+        
+        # Plotting dendrograms
+        fig, axes = plt.subplots(1, 2, figsize=(16, 8))
+        
+        # Dendrogram for STEM group questions
+        dendrogram(
+            stem_linkage,
+            ax=axes[0],
+            labels=stem_data_transposed.index,
+            color_threshold=stem_linkage[-k, 2]  # Color the top k+1 clusters
+        )
+        axes[0].set_title('STEM Discipline')
+        axes[0].tick_params(axis='y', which='both', left=False, labelleft=False)
+        
+        # Dendrogram for SHAPE group questions
+        dendrogram(
+            shape_linkage,
+            ax=axes[1],
+            labels=shape_data_transposed.index,
+            color_threshold=shape_linkage[-k, 2]  # Color the top k+1 clusters
+        )
+        axes[1].set_title('SHAPE Discipline')
+        axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
     
-    k = k+1
-    
-    # Get cluster assignments for STEM and SHAPE groups
-    stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
-    shape_clusters = fcluster(shape_linkage, k, criterion='maxclust')
-    
-    # Calculate centroids for each cluster
-    stem_centroids = stem_data_transposed.groupby(stem_clusters).mean()
-    shape_centroids = shape_data_transposed.groupby(shape_clusters).mean()
-    
-    # Perform t-test to compare cluster centroids
-    # Flatten the centroids for comparison
-    stem_centroids_flat = stem_centroids.values.flatten()
-    shape_centroids_flat = shape_centroids.values.flatten()
-    
-    t_stat, p_value = ttest_ind(stem_centroids_flat, shape_centroids_flat)
-   # Display T-test results
-    st.subheader("T-test Results")
-    st.markdown(f"**T-statistic:** {t_stat:.4f}")
-    st.markdown(f"**P-value:** {p_value:.4f}")
-    
-    
-    # Flatten the centroids for comparison and plot
-    stem_means = stem_centroids.mean(axis=1)
-    shape_means = shape_centroids.mean(axis=1)
-    
-    # Plotting the means of the cluster centroids
-    fig, ax = plt.subplots(figsize=(10, 6))
-    
-    # Bar width
-    bar_width = 0.35
-    
-    # Bar positions
-    index = np.arange(len(stem_means))
-    
-    # Bar plot for STEM centroids
-    bar1 = ax.bar(index, stem_means, bar_width, label='STEM')
-    
-    # Bar plot for SHAPE centroids
-    bar2 = ax.bar(index + bar_width, shape_means, bar_width, label='SHAPE')
-    
-    # Add labels, title, and legend
-    ax.set_xlabel('Cluster')
-    ax.set_ylabel('Mean Centroid Value')
-    ax.set_title('Means of Cluster Centroids for STEM and SHAPE Groups')
-    ax.set_xticks(index + bar_width / 2)
-    ax.set_xticklabels([f'Cluster {i+1}' for i in range(len(stem_means))])
-    ax.legend()
+        st.pyplot(fig,use_container_width=True)
 
-    st.pyplot(fig,use_container_width=True)
+    with col1_2:
+        k = k+1
+    
+        # Get cluster assignments for STEM and SHAPE groups
+        stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
+        shape_clusters = fcluster(shape_linkage, k, criterion='maxclust')
+        
+        # Calculate centroids for each cluster
+        stem_centroids = stem_data_transposed.groupby(stem_clusters).mean()
+        shape_centroids = shape_data_transposed.groupby(shape_clusters).mean()
+        
+        # Perform t-test to compare cluster centroids
+        # Flatten the centroids for comparison
+        stem_centroids_flat = stem_centroids.values.flatten()
+        shape_centroids_flat = shape_centroids.values.flatten()
+
+        # Flatten the centroids for comparison and plot
+        stem_means = stem_centroids.mean(axis=1)
+        shape_means = shape_centroids.mean(axis=1)
+        
+        # Plotting the means of the cluster centroids
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        # Bar width
+        bar_width = 0.35
+        
+        # Bar positions
+        index = np.arange(len(stem_means))
+        
+        # Bar plot for STEM centroids
+        bar1 = ax.bar(index, stem_means, bar_width, label='STEM')
+        
+        # Bar plot for SHAPE centroids
+        bar2 = ax.bar(index + bar_width, shape_means, bar_width, label='SHAPE')
+        
+        # Add labels, title, and legend
+        ax.set_xlabel('Cluster')
+        ax.set_ylabel('Mean Centroid Value')
+        ax.set_title('Means of Cluster Centroids for STEM and SHAPE Groups')
+        ax.set_xticks(index + bar_width / 2)
+        ax.set_xticklabels([f'Cluster {i+1}' for i in range(len(stem_means))])
+        ax.legend()
+    
+        st.pyplot(fig,use_container_width=True)
+    with col1_3:
+        t_stat, p_value = ttest_ind(stem_centroids_flat, shape_centroids_flat)
+        # Display T-test results
+        st.subheader("T-test Results")
+        st.markdown(f"**T-statistic:** {t_stat:.4f}")
+        st.markdown(f"**P-value:** {p_value:.4f}")
+    
+    
+    
