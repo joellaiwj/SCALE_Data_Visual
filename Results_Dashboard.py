@@ -1268,6 +1268,15 @@ with tabs[3]:
     
         st.pyplot(fig,use_container_width=True)
     with col1_3:
+        # Map cluster labels to questions
+        stem_cluster_members = {i: [] for i in range(1, k + 1)}
+        for question, cluster in zip(stem_data_transposed.index, stem_clusters):
+            stem_cluster_members[cluster].append(question)
+        
+        shape_cluster_members = {i: [] for i in range(1, k + 1)}
+        for question, cluster in zip(shape_data_transposed.index, shape_clusters):
+            shape_cluster_members[cluster].append(question)
+            
         # Display cluster members
         st.subheader("Cluster Members")
         st.markdown("**STEM Cluster Members:**")
