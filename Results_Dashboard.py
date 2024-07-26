@@ -1171,6 +1171,7 @@ with tabs[3]:
 
     col1_1, col1_2, col1_3 = st.columns((3,3,1))
     with col1_1:
+        st.subheader("Question CLuster Analysis by Discipline")
         columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
             '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
             '2.1 (Q4_A_6)', '2.1 (Q4_A_5)', '2.1 (Q4_A_4)', '2.1 (Q4_A_3)',
@@ -1267,6 +1268,16 @@ with tabs[3]:
     
         st.pyplot(fig,use_container_width=True)
     with col1_3:
+        # Display cluster members
+        st.subheader("Cluster Members")
+        st.markdown("**STEM Cluster Members:**")
+        for cluster, members in stem_cluster_members.items():
+            st.markdown(f"**Cluster {cluster}:** {', '.join(members)}")
+        
+        st.markdown("**SHAPE Cluster Members:**")
+        for cluster, members in shape_cluster_members.items():
+            st.markdown(f"**Cluster {cluster}:** {', '.join(members)}")
+        
         t_stat, p_value = ttest_ind(stem_centroids_flat, shape_centroids_flat)
         # Display T-test results
         st.subheader("T-test Results")
