@@ -223,9 +223,9 @@ with tabs[1]:
         df_pre2 = df_pre[Question_4]
         
         # Relabel columns to A-N
-        new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(columns))]
+        new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(Question_4))]
 
-        df_pre2.rename(columns=dict(zip(Question_4, new_column_names)), inplace=True)
+        df_pre2.columns = new_column_labels
         
         # Standardize the data
         #scaler = StandardScaler()
