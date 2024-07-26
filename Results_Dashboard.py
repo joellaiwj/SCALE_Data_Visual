@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 import scipy as sp
 
 from scipy import stats
+from scipy.stats import ttest_ind
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
 from matplotlib.colors import ListedColormap
