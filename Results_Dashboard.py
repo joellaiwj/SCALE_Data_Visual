@@ -1166,7 +1166,7 @@ with tabs[2]:
         
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 with tabs[3]:
-    st.dataframe(df_pre)
+    df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
     
     columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
         '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
