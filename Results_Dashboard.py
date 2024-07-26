@@ -222,8 +222,8 @@ with tabs[1]:
         # Drop the 'RecordID' column for clustering analysis
         df_pre2 = df_pre[Question_4]
         
-        new_column_names = {'2.1.A', '2.1.B', '2.1.C', '2.1.D', '2.1.E', '2.1.F', '2.1.G', '2.1.H',
-                            '2.1.I', '2.1.J', '2.1.K', '2.1.L', '2.1.M', '2.1.N'}
+        # Relabel columns to A-N
+        new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(columns))]
 
         df_pre2.rename(columns=dict(zip(Question_4, new_column_names)), inplace=True)
         
@@ -236,7 +236,10 @@ with tabs[1]:
     
         # Transpose the data to have questions as rows and responses as columns
         #transposed_data = standardized_data.T
-    
+
+        # Using sns.clustermap with the same method and metric
+        sns_clustermap = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, cbar_pos=None, linewidths=2.0, linecolor='black')
+
         # Plot the clustermap with boxes
         cluster_map = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, figsize=(20, 10), 
                                      dendrogram_ratio=(.1, .1), cbar_pos=None, 
@@ -253,6 +256,7 @@ with tabs[1]:
         
         plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
         st.pyplot(cluster_map.fig,use_container_width=True)
+        st.pyplot(sns_clustermap.fig,use_container_width=True)
         
     col4_1, col4_2 = st.columns((20,1))
     
