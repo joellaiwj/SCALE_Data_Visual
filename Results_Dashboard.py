@@ -11,7 +11,7 @@ from scipy import stats
 from wordcloud import WordCloud, STOPWORDS
 from sklearn.preprocessing import StandardScaler
 from matplotlib.colors import ListedColormap
-from scipy.cluster.hierarchy import fcluster
+from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
