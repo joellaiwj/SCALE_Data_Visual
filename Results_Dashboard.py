@@ -1320,10 +1320,16 @@ with tabs[3]:
             for clusters, result in mannwhitney_results.items():
                 stem_cluster, shape_cluster = clusters
                 stat, p_value, effect_size = result
-                st.write(f"STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:")
-                st.write(f"  - U statistic: {stat:.4f}")
-                st.write(f"  - P-value: {p_value:.4f}")
-                st.write(f"  - Effect size (r): {effect_size:.4f}")
-    
+
+                if p_value <=0.05:
+                    st.markdown(f"**:red[STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:]**")
+                    st.write(f"  - U statistic: {stat:.4f}")
+                    st.write(f"  - P-value: {p_value:.4f}")
+                    st.write(f"  - Effect size (r): {effect_size:.4f}")
+                else:
+                    st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
+                    st.write(f"  - U statistic: {stat:.4f}")
+                    st.write(f"  - P-value: {p_value:.4f}")
+                    st.write(f"  - Effect size (r): {effect_size:.4f}")
     
     
