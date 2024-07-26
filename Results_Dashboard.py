@@ -1174,9 +1174,8 @@ with tabs[3]:
     
     df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
     
-    col1_1, col1_2, col1_3, col1_4 = st.columns((3,1,1,1))
+    col1_1, col1_2 = st.columns((1,1))
     with col1_1:
-        
         columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
             '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
             '2.1 (Q4_A_6)', '2.1 (Q4_A_5)', '2.1 (Q4_A_4)', '2.1 (Q4_A_3)',
@@ -1229,84 +1228,88 @@ with tabs[3]:
         st.pyplot(fig,use_container_width=True)
 
     with col1_2:
-        k = k+1
-        # Get cluster assignments for STEM and SHAPE groups
-        stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
-        shape_clusters = fcluster(shape_linkage, k, criterion='maxclust')
+        st.subheader("Mann-Whitney U Test Results for Nearest Cluster Pairings:")
+        col1_2_1, col1_2_2, col1_2_3 = st.columns((1,1,1))
+
+        with col1_2_1:
+            k = k+1
+            # Get cluster assignments for STEM and SHAPE groups
+            stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
+            shape_clusters = fcluster(shape_linkage, k, criterion='maxclust')
+        
+            # Map cluster labels to questions for STEM
+            stem_cluster_members = {i: [] for i in range(1, k + 1)}
+            for question, cluster in zip(stem_data_transposed.index, stem_clusters):
+                stem_cluster_members[cluster].append(question)
+        
+            st.markdown("**STEM Cluster Members:**")
+            for cluster, members in stem_cluster_members.items():
+                st.write(f"Cluster {cluster}: {', '.join(members)}")
+        
+            # Map cluster labels to questions for SHAPE
+            shape_cluster_members = {i: [] for i in range(1, k + 1)}
+            for question, cluster in zip(shape_data_transposed.index, shape_clusters):
+                shape_cluster_members[cluster].append(question)
+        
+            st.markdown("**SHAPE Cluster Members:**")
+            for cluster, members in shape_cluster_members.items():
+                st.write(f"Cluster {cluster}: {', '.join(members)}")
     
-        # Map cluster labels to questions for STEM
-        stem_cluster_members = {i: [] for i in range(1, k + 1)}
-        for question, cluster in zip(stem_data_transposed.index, stem_clusters):
-            stem_cluster_members[cluster].append(question)
+        with col1_2_2:
+            # Calculate mean scores for each cluster
+            stem_cluster_means = {}
+            shape_cluster_means = {}
+        
+            for cluster in range(1, k + 1):
+                stem_cluster_data = stem_data[stem_cluster_members[cluster]]
+                shape_cluster_data = shape_data[shape_cluster_members[cluster]]
+        
+                stem_cluster_mean = stem_cluster_data.mean().mean()
+                shape_cluster_mean = shape_cluster_data.mean().mean()
+        
+                stem_cluster_means[cluster] = stem_cluster_mean
+                shape_cluster_means[cluster] = shape_cluster_mean
+        
+            # Print mean scores for each cluster
+            st.markdown("**Mean Scores for STEM Clusters:**")
+            for cluster, mean_score in stem_cluster_means.items():
+                st.write(f"Cluster {cluster}: {mean_score:.4f}")
+        
+            st.markdown("**Mean Scores for SHAPE Clusters:**")
+            for cluster, mean_score in shape_cluster_means.items():
+                st.write(f"Cluster {cluster}: {mean_score:.4f}")
+        
+            # Calculate the distance between the mean scores of each cluster using Manhattan distance
+            stem_means = np.array(list(stem_cluster_means.values())).reshape(-1, 1)
+            shape_means = np.array(list(shape_cluster_means.values())).reshape(-1, 1)
+        
+            distances = cdist(stem_means, shape_means, metric='cityblock')  # Using Manhattan distance (cityblock)
+        
+            # Find the nearest cluster in SHAPE for each cluster in STEM
+            nearest_clusters = np.argmin(distances, axis=1)
     
-        st.write("STEM Cluster Members:")
-        for cluster, members in stem_cluster_members.items():
-            st.write(f"Cluster {cluster}: {', '.join(members)}")
+        with col1_2_3:    
+            # Mapping the clusters with minimal distance
+            cluster_pairings = {}
+            for i, shape_cluster in enumerate(nearest_clusters):
+                stem_cluster = i + 1
+                cluster_pairings[stem_cluster] = shape_cluster + 1
+        
+            # Perform Mann-Whitney U test on all records in the cluster pairings
+            mannwhitney_results = {}
+            for stem_cluster, shape_cluster in cluster_pairings.items():
+                stem_cluster_data = stem_data[stem_cluster_members[stem_cluster]]
+                shape_cluster_data = shape_data[shape_cluster_members[shape_cluster]]
+        
+                # Flatten the data for Mann-Whitney U test
+                stem_values = stem_cluster_data.values.flatten()
+                shape_values = shape_cluster_data.values.flatten()
+        
+                # Perform the Mann-Whitney U test
+                stat, p_value = mannwhitneyu(stem_values, shape_values, alternative='two-sided')
+                mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value)
     
-        # Map cluster labels to questions for SHAPE
-        shape_cluster_members = {i: [] for i in range(1, k + 1)}
-        for question, cluster in zip(shape_data_transposed.index, shape_clusters):
-            shape_cluster_members[cluster].append(question)
-    
-        st.write("SHAPE Cluster Members:")
-        for cluster, members in shape_cluster_members.items():
-            st.write(f"Cluster {cluster}: {', '.join(members)}")
-    
-    with col1_3:
-        # Calculate mean scores for each cluster
-        stem_cluster_means = {}
-        shape_cluster_means = {}
-    
-        for cluster in range(1, k + 1):
-            stem_cluster_data = stem_data[stem_cluster_members[cluster]]
-            shape_cluster_data = shape_data[shape_cluster_members[cluster]]
-    
-            stem_cluster_mean = stem_cluster_data.mean().mean()
-            shape_cluster_mean = shape_cluster_data.mean().mean()
-    
-            stem_cluster_means[cluster] = stem_cluster_mean
-            shape_cluster_means[cluster] = shape_cluster_mean
-    
-        # Print mean scores for each cluster
-        st.write("\nMean Scores for STEM Clusters:")
-        for cluster, mean_score in stem_cluster_means.items():
-            st.write(f"Cluster {cluster}: {mean_score:.4f}")
-    
-        st.write("\nMean Scores for SHAPE Clusters:")
-        for cluster, mean_score in shape_cluster_means.items():
-            st.write(f"Cluster {cluster}: {mean_score:.4f}")
-    
-        # Calculate the distance between the mean scores of each cluster using Manhattan distance
-        stem_means = np.array(list(stem_cluster_means.values())).reshape(-1, 1)
-        shape_means = np.array(list(shape_cluster_means.values())).reshape(-1, 1)
-    
-        distances = cdist(stem_means, shape_means, metric='cityblock')  # Using Manhattan distance (cityblock)
-    
-        # Find the nearest cluster in SHAPE for each cluster in STEM
-        nearest_clusters = np.argmin(distances, axis=1)
-    
-    with col1_4:    
-        # Mapping the clusters with minimal distance
-        cluster_pairings = {}
-        for i, shape_cluster in enumerate(nearest_clusters):
-            stem_cluster = i + 1
-            cluster_pairings[stem_cluster] = shape_cluster + 1
-    
-        # Perform Mann-Whitney U test on all records in the cluster pairings
-        mannwhitney_results = {}
-        for stem_cluster, shape_cluster in cluster_pairings.items():
-            stem_cluster_data = stem_data[stem_cluster_members[stem_cluster]]
-            shape_cluster_data = shape_data[shape_cluster_members[shape_cluster]]
-    
-            # Flatten the data for Mann-Whitney U test
-            stem_values = stem_cluster_data.values.flatten()
-            shape_values = shape_cluster_data.values.flatten()
-    
-            # Perform the Mann-Whitney U test
-            stat, p_value = mannwhitneyu(stem_values, shape_values, alternative='two-sided')
-            mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value)
-    
-        st.write("\nMann-Whitney U Test Results for Nearest Cluster Pairings:")
+        
         for clusters, result in mannwhitney_results.items():
             stem_cluster, shape_cluster = clusters
             stat, p_value = result
