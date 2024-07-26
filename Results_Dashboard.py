@@ -1174,7 +1174,7 @@ with tabs[3]:
     
     df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
     
-    col1_1, col1_2, col1_3 = st.columns((3,3,1))
+    col1_1, col1_2, col1_3, col1_4 = st.columns((3,1,1,1))
     with col1_1:
         
         columns = ['2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
@@ -1252,6 +1252,7 @@ with tabs[3]:
         for cluster, members in shape_cluster_members.items():
             st.write(f"Cluster {cluster}: {', '.join(members)}")
     
+    with col1_3:
         # Calculate mean scores for each cluster
         stem_cluster_means = {}
         shape_cluster_means = {}
