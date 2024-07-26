@@ -54,12 +54,22 @@ with tabs[0]:
 
 with tabs[1]:
     st.subheader("Filter by Discipline or College:")
-    # Add a selectbox for filtering by college
-    selected_college = st.selectbox("",options=["All"] + df_pre['College'].unique().tolist() + df_pre['Discipline'].unique().tolist())
-
-    # Filter dataframe based on the selected college
-    if selected_college != "All":
-        df_pre = df_pre[df_pre['College', 'Discipline'] == selected_college]
+    # Create a unique list of colleges and disciplines for the selectbox
+    unique_colleges = df_pre['College'].unique().tolist()
+    unique_disciplines = df_pre['Discipline'].unique().tolist()
+    
+    # Add a selectbox for filtering by college or discipline
+    selected_filter = st.selectbox(
+        "",
+        options=["All"] + unique_colleges + unique_disciplines
+    )
+    
+    # Filter dataframe based on the selected filter
+    if selected_filter != "All":
+        if selected_filter in unique_colleges:
+            df_pre = df_pre[df_pre['College'] == selected_filter]
+        elif selected_filter in unique_disciplines:
+            df_pre = df_pre[df_pre['Discipline'] == selected_filter]
 
     total_entries = len(df_pre)
     st.header(":green[Participant Demographic]")
