@@ -252,7 +252,7 @@ with tabs[1]:
         
         ##### INDUSTRY #####
         # Columns to plot
-        columns = ['College', 'School', 'Programme', 'Industry']
+        columns = ['Discipline', 'College', 'School', 'Programme', 'Industry']
         #columns = ['School', 'Programme', 'Industry']
         
         # Count occurrences of each combination of "College", "School", "Programme", and "Industry"
