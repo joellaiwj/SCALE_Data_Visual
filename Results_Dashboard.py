@@ -1310,12 +1310,12 @@ with tabs[3]:
                 mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value)
     
         
-        for clusters, result in mannwhitney_results.items():
-            stem_cluster, shape_cluster = clusters
-            stat, p_value = result
-            st.write(f"STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:")
-            st.write(f"  - U statistic: {stat:.4f}")
-            st.write(f"  - P-value: {p_value:.4f}")
+            for clusters, result in mannwhitney_results.items():
+                stem_cluster, shape_cluster = clusters
+                stat, p_value = result
+                st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
+                st.write(f"  - U-statistic: {stat:.4f}")
+                st.write(f"  - P-value: {p_value:.4f}")
     
     
     
