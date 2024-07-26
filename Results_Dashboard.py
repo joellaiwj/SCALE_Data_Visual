@@ -1236,7 +1236,11 @@ with tabs[3]:
     shape_centroids_flat = shape_centroids.values.flatten()
     
     t_stat, p_value = ttest_ind(stem_centroids_flat, shape_centroids_flat)
-    st.markdown(t_stat, p_value)
+   # Display T-test results
+    st.subheader("T-test Results")
+    st.markdown(f"**T-statistic:** {t_stat:.4f}")
+    st.markdown(f"**P-value:** {p_value:.4f}")
+    
     
     # Flatten the centroids for comparison and plot
     stem_means = stem_centroids.mean(axis=1)
