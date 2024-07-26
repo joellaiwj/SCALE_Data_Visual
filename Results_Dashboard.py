@@ -1218,7 +1218,7 @@ with tabs[3]:
     axes[1].set_title('SHAPE Discipline')
     axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
 
-    st.plotly_chart(fig,use_container_width=True)
+    st.pyplot(fig,use_container_width=True)
     
     k = k+1
     
@@ -1269,4 +1269,4 @@ with tabs[3]:
     ax.set_xticklabels([f'Cluster {i+1}' for i in range(len(stem_means))])
     ax.legend()
 
-    st.plotly_chart(fig,use_container_width=True)
+    st.pyplot(fig,use_container_width=True)
