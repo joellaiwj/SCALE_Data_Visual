@@ -238,7 +238,7 @@ with tabs[1]:
         #transposed_data = standardized_data.T
     
         # Plot the clustermap with boxes
-        cluster_map = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', standard_scale = 1, cmap=custom_cmap, figsize=(20, 10), 
+        cluster_map = sns.clustermap(df_pre2.T, method='ward', cmap=custom_cmap, figsize=(20, 10), 
                                      dendrogram_ratio=(.1, .1), cbar_pos=None, 
                                      linewidths=1.0, linecolor='black')
     
