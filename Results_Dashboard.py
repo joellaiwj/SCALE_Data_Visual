@@ -228,17 +228,17 @@ with tabs[1]:
         df_pre2.rename(columns=dict(zip(Question_4, new_column_names)), inplace=True)
         
         # Standardize the data
-        #scaler = StandardScaler()
-        #standardized_data = scaler.fit_transform(df_pre2)  # Replace with relevant columns
+        scaler = StandardScaler()
+        standardized_data = scaler.fit_transform(df_pre2)  # Replace with relevant columns
     
         # Define a custom colormap with 4 colors
         custom_cmap = ListedColormap(['#de425b', '#f3babc', '#aecdc2', '#488f31'])
     
         # Transpose the data to have questions as rows and responses as columns
-        #transposed_data = standardized_data.T
+        transposed_data = standardized_data.T
     
         # Plot the clustermap with boxes
-        cluster_map = sns.clustermap(df_pre2.T, method='complete', cmap=custom_cmap, figsize=(20, 10), 
+        cluster_map = sns.clustermap(transposed_data, method='ward', cmap=custom_cmap, figsize=(20, 10), 
                                      dendrogram_ratio=(.1, .1), cbar_pos=None, 
                                      linewidths=1.0, linecolor='black')
     
