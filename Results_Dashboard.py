@@ -53,13 +53,13 @@ with tabs[0]:
     st.dataframe(df_post)
 
 with tabs[1]:
-    st.subheader("Filter by College:")
+    st.subheader("Filter by Discipline or College:")
     # Add a selectbox for filtering by college
-    selected_college = st.selectbox("",options=["All"] + df_pre['College'].unique().tolist())
+    selected_college = st.selectbox("",options=["All"] + df_pre['College'].unique().tolist()) + df_pre['College'].unique().tolist())
 
     # Filter dataframe based on the selected college
     if selected_college != "All":
-        df_pre = df_pre[df_pre['College'] == selected_college]
+        df_pre = df_pre[df_pre['College', 'Discipline'] == selected_college]
 
     total_entries = len(df_pre)
     st.header(":green[Participant Demographic]")
