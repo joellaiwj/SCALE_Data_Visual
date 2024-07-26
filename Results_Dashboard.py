@@ -1305,6 +1305,9 @@ with tabs[3]:
                 stem_values = stem_cluster_data.values.flatten()
                 shape_values = shape_cluster_data.values.flatten()
         
+                # Perform the Mann-Whitney U test
+                stat, p_value = mannwhitneyu(stem_values, shape_values, alternative='two-sided')
+                
                 # Calculate the effect size
                 n1 = len(stem_values)
                 n2 = len(shape_values)
@@ -1313,7 +1316,7 @@ with tabs[3]:
                 r = z / np.sqrt(N)  # Effect size
                 
                 mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value, r)
-        
+
             for clusters, result in mannwhitney_results.items():
                 stem_cluster, shape_cluster = clusters
                 stat, p_value, effect_size = result
