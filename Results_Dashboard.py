@@ -15,9 +15,6 @@ from matplotlib.colors import ListedColormap
 from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
 from scipy.spatial.distance import cdist
 
-# Detect user's theme preference
-user_theme = detect_theme()
-
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
