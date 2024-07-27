@@ -1351,6 +1351,7 @@ with tabs[3]:
         st.dataframe(mapping_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=True)
     
     with col2_3:
+        st.markdown("Paired T-Test Results")
         # Paired t-test
         results = {}
         for col in Qn_Index:
@@ -1372,4 +1373,4 @@ with tabs[3]:
         summary_table = pd.DataFrame.from_dict(results, orient='index')
         summary_table['effect_size'] = pd.Series(effect_sizes)
         
-        st.dataframe(summary_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=False)
+        st.dataframe(summary_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=False)
