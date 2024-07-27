@@ -1344,11 +1344,11 @@ with tabs[3]:
             ]
         
         mapping_table = pd.DataFrame({
-        'Label': new_labels,
+        'Label': Qn_Index,
         'Survey Question': Question_1_Description
         })
         
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
+        st.dataframe(mapping_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=True)
     
     with col2_3:
         # Paired t-test
