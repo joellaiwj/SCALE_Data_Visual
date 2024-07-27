@@ -621,14 +621,23 @@ with tabs[1]:
             df_html = df_pre_14.to_html(escape=False, index=False)
             return df_html
         
-        # Inject custom CSS to widen the Distribution column and center headers
+        # Inject custom CSS to style the table
         st.markdown("""
             <style>
+            .dataframe th {
+                text-align: center;
+                background-color: black;
+                color: white;
+                font-weight: bold;
+            }
             .dataframe th:nth-child(3), .dataframe td:nth-child(3) {
                 min-width: 400px;
             }
-            .dataframe th {
-                text-align: center;
+            .dataframe tbody tr:nth-child(even) {
+                background-color: #d9ead3;
+            }
+            .dataframe tbody tr:nth-child(odd) {
+                background-color: #fce5cd;
             }
             </style>
             """, unsafe_allow_html=True)
