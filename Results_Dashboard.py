@@ -14,6 +14,22 @@ from sklearn.preprocessing import StandardScaler
 from matplotlib.colors import ListedColormap
 from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
 from scipy.spatial.distance import cdist
+from streamlit_javascript import st_javascript
+
+# Function to detect user's theme preference using JavaScript
+def detect_theme():
+    js_code = """
+    (function() {
+        var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return isDarkMode ? 'dark' : 'light';
+    })();
+    """
+    theme = st_javascript(js_code)
+    return theme
+
+# Detect user's theme preference
+user_theme = detect_theme()
+
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
