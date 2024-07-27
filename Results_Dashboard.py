@@ -1303,7 +1303,10 @@ with tabs[3]:
     fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
     st.plotly_chart(fig)
 
-    col2_1, col2_2 = st.columns((6,2))
+
+    st.subheader(":green[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from INtervention]")
+    st.markdown("This section show the results when students were asked to retrospectively examine how they were prior to using InPlace and now.")
+    col2_1, col2_2, col2_3 = st.columns((3,1,1))
     with col2_1:
         Qn_Index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
@@ -1325,6 +1328,29 @@ with tabs[3]:
         st.pyplot(fig,use_container_width=True)
 
     with col2_2:
+        st.markdown("I had/have")
+        # List of specific columns to be plotted
+        Question_1_Description = [
+            'knowledge of the skills I possessed.',
+            'knowledge of the skills required for my desired industry.',
+            'knowledge of the skills I do not have (skills gap) for my desired industry.',
+            'a list of career options.',
+            'a plan to prioritise the skills that I should develop.',
+            'an action plan of the courses I should take.',
+            'knowledge of resources that can help me research my career options.',
+            'confidence in my ability to research career, employment, and available training.',
+            'effective strategies to keep myself on track to achieve my educational and employment goals.',
+            'confidence in my ability to manage future career changes.'
+            ]
+        
+        mapping_table = pd.DataFrame({
+        'Label': new_labels,
+        'Survey Question': Question_1_Description
+        })
+        
+        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
+    
+    with col2_3:
         # Paired t-test
         results = {}
         for col in Qn_Index:
