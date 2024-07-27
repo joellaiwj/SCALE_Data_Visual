@@ -633,7 +633,10 @@ with tabs[1]:
             .dataframe th:nth-child(3), .dataframe td:nth-child(3) {
                 min-width: 400px;
             }
-            .dataframe tbody tr:nth-child {
+            .dataframe tbody tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+            .dataframe tbody tr:nth-child(odd) {
                 background-color: #ffffff;
             }
             </style>
