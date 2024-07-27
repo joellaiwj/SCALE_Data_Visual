@@ -634,10 +634,12 @@ with tabs[1]:
                 min-width: 400px;
             }
             .dataframe tbody tr:nth-child(even) {
-                background-color: #ffffff;
+                background-color: white;
+                color: black;
             }
             .dataframe tbody tr:nth-child(odd) {
-                background-color: #ffffff;
+                background-color: white;
+                color: black;
             }
             </style>
             """, unsafe_allow_html=True)
