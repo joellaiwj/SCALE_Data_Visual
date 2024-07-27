@@ -1199,8 +1199,8 @@ with tabs[3]:
         # Hierarchical clustering for SHAPE Discipline questions
         shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
         
-        # Define number of clusters, k+1
-        k = st.selectbox("Select number of clusters:", [2, 3, 4])
+        # Select number of clusters
+        k = st.slider('Select number of clusters', 1, 14, 3)
         k = k-1
         
         # Plotting dendrograms
