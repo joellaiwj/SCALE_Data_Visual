@@ -14,18 +14,6 @@ from sklearn.preprocessing import StandardScaler
 from matplotlib.colors import ListedColormap
 from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
 from scipy.spatial.distance import cdist
-from streamlit_javascript import st_javascript
-
-# Function to detect user's theme preference using JavaScript
-def detect_theme():
-    js_code = """
-    (function() {
-        var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        return isDarkMode ? 'dark' : 'light';
-    })();
-    """
-    theme = st_javascript(js_code)
-    return theme
 
 # Detect user's theme preference
 user_theme = detect_theme()
@@ -1139,7 +1127,7 @@ with tabs[2]:
         
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 with tabs[3]:
-    st.subheader(":green[Cluster Analysis of Factors Influencing Students' Elective Choice by Discipline]")
+    st.subheader(":blue[Cluster Analysis of Factors Influencing Students' Elective Choice by Discipline]")
     st.markdown("This section show the results when we performs hierarchical clustering on survey data from STEM and SHAPE disciplines, \
     calculates mean scores for each cluster, and performs a Mann-Whitney U test on paired clusters.")
     
@@ -1306,7 +1294,7 @@ with tabs[3]:
                 #    st.write(f"  - Effect size (r): {effect_size:.4f}")
             if count == k:
                 st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
-    st.subheader(":green[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
+    st.subheader(":blue[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
     st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) required for the job of their choice.")
     skills_df = pd.read_excel('Classified_Skills.xlsx')
 
@@ -1320,7 +1308,7 @@ with tabs[3]:
     st.plotly_chart(fig)
 
 
-    st.subheader(":green[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from Intervention]")
+    st.subheader(":blue[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from Intervention]")
     st.markdown("This section show the results when students were asked to retrospectively examine their agreement to a set of statements prior to using InPlace and now.")
     col2_1, col2_2, col2_3 = st.columns((3,1,1))
     with col2_1:
