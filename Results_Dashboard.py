@@ -634,7 +634,7 @@ with tabs[1]:
                 min-width: 400px;
             }
             .dataframe tbody tr:nth-child {
-                background-color: white;
+                background-color: #ffffff;
             }
             </style>
             """, unsafe_allow_html=True)
