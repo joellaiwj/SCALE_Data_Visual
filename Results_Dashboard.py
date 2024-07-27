@@ -1305,7 +1305,7 @@ with tabs[3]:
 
 
     st.subheader(":green[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from Intervention]")
-    st.markdown("This section show the results when students were asked to retrospectively examine how they were prior to using InPlace and now.")
+    st.markdown("This section show the results when students were asked to retrospectively examine their agreement to a set of statements prior to using InPlace and now.")
     col2_1, col2_2, col2_3 = st.columns((3,1,1))
     with col2_1:
         Qn_Index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
