@@ -828,51 +828,6 @@ with tabs[2]:
         })
         
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
-
-    col2_1, col2_2 = st.columns((6,2))
-    with col2_1:
-        Qn_Index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-
-        # Calculate difference scores
-        for col in Qn_Index:
-            df_post[f'{col}_diff'] = df_post[f'1.2.{col}'] - df_post[f'1.1.{col}']
-
-        # Consolidate histograms
-        fig, axes = plt.subplots(nrows=2, ncols=5, figsize=(20, 10))
-        axes = axes.flatten()
-        for i, col in enumerate(Qn_Index):
-            sns.histplot(df_post[f'{col}_diff'], kde=False, ax=axes[i])
-            axes[i].set_title(f'{col}')
-            axes[i].set_xlabel('Difference Score')
-            axes[i].set_ylabel('Frequency')
-            axes[i].set_xlim(-4,4)
-            axes[i].set_ylim(0,71)
-        plt.tight_layout()
-        st.pyplot(fig,use_container_width=True)
-
-    with col2_2:
-        # Paired t-test
-        results = {}
-        for col in Qn_Index:
-            t_stat, p_val = stats.ttest_rel(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
-            results[col] = {'t_stat': t_stat, 'p_val': p_val}
-
-        # Effect size (Cohen's d)
-        def cohens_d(x, y):
-            nx = len(x)
-            ny = len(y)
-            dof = nx + ny - 2
-            return (x.mean() - y.mean()) / (((nx - 1) * x.var() + (ny - 1) * y.var()) / dof) ** 0.5
-
-        effect_sizes = {}
-        for col in Qn_Index:
-            effect_sizes[col] = cohens_d(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
-        
-        # Summary table
-        summary_table = pd.DataFrame.from_dict(results, orient='index')
-        summary_table['effect_size'] = pd.Series(effect_sizes)
-        
-        st.dataframe(summary_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=False)
     
     st.subheader(":blue[Construct Study of InPlace]")
     col3_1, col3_2 = st.columns((2,1))
@@ -1347,3 +1302,48 @@ with tabs[3]:
     fig = px.pie(skill_distribution, values='Count', names='Type')
     fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
     st.plotly_chart(fig)
+
+    col2_1, col2_2 = st.columns((6,2))
+    with col2_1:
+        Qn_Index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+
+        # Calculate difference scores
+        for col in Qn_Index:
+            df_post[f'{col}_diff'] = df_post[f'1.2.{col}'] - df_post[f'1.1.{col}']
+
+        # Consolidate histograms
+        fig, axes = plt.subplots(nrows=2, ncols=5, figsize=(20, 10))
+        axes = axes.flatten()
+        for i, col in enumerate(Qn_Index):
+            sns.histplot(df_post[f'{col}_diff'], kde=False, ax=axes[i])
+            axes[i].set_title(f'{col}')
+            axes[i].set_xlabel('Difference Score')
+            axes[i].set_ylabel('Frequency')
+            axes[i].set_xlim(-4,4)
+            axes[i].set_ylim(0,71)
+        plt.tight_layout()
+        st.pyplot(fig,use_container_width=True)
+
+    with col2_2:
+        # Paired t-test
+        results = {}
+        for col in Qn_Index:
+            t_stat, p_val = stats.ttest_rel(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+            results[col] = {'t_stat': t_stat, 'p_val': p_val}
+
+        # Effect size (Cohen's d)
+        def cohens_d(x, y):
+            nx = len(x)
+            ny = len(y)
+            dof = nx + ny - 2
+            return (x.mean() - y.mean()) / (((nx - 1) * x.var() + (ny - 1) * y.var()) / dof) ** 0.5
+
+        effect_sizes = {}
+        for col in Qn_Index:
+            effect_sizes[col] = cohens_d(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+        
+        # Summary table
+        summary_table = pd.DataFrame.from_dict(results, orient='index')
+        summary_table['effect_size'] = pd.Series(effect_sizes)
+        
+        st.dataframe(summary_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=False)
