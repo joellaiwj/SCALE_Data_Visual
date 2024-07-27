@@ -1168,7 +1168,7 @@ with tabs[2]:
         
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 with tabs[3]:
-    st.subheader("Question Cluster Analysis of Factors Influencing Students' Elective Choice by Discipline")
+    st.subheader(":green[Cluster Analysis of Factors Influencing Students' Elective Choice by Discipline]")
     st.markdown("This section show the results when we performs hierarchical clustering on survey data from STEM and SHAPE disciplines, \
     calculates mean scores for each cluster, and performs a Mann-Whitney U test on paired clusters.")
     
@@ -1335,4 +1335,15 @@ with tabs[3]:
                 #    st.write(f"  - Effect size (r): {effect_size:.4f}")
             if count == k:
                 st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
-    
+    st.subheader(":green[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
+    st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) required for the job of their choice.")
+    skills_df = pd.read_excel('Classified_Skills.xlsx')
+
+    # Calculate the distribution of skill types
+    skill_distribution = skills_df['Type'].value_counts().reset_index()
+    skill_distribution.columns = ['Type', 'Count']
+
+    # Create a pie chart with Plotly
+    fig = px.pie(skill_distribution, values='Count', names='Type')
+    fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
+    st.plotly_chart(fig)
