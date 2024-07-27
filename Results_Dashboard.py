@@ -1200,7 +1200,7 @@ with tabs[3]:
         shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
         
         # Define number of clusters, k+1
-        k = st.selectbox("Select number of clusters:", [2, 3])
+        k = st.selectbox("Select number of clusters:", [2, 3, 4])
         k = k-1
         
         # Plotting dendrograms
@@ -1317,20 +1317,22 @@ with tabs[3]:
                 r = z / np.sqrt(N)  # Effect size
                 
                 mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value, r)
-
+            count = 0
             for clusters, result in mannwhitney_results.items():
                 stem_cluster, shape_cluster = clusters
                 stat, p_value, effect_size = result
-
+                
                 if p_value <=0.05:
                     st.markdown(f"**:red[STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:]**")
                     st.write(f"  - U statistic: {stat:.4f}")
                     st.write(f"  - P-value: {p_value:.4f}")
                     st.write(f"  - Effect size (r): {effect_size:.4f}")
-                #else:
+                else:
+                    count += 1
                 #    st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
                 #    st.write(f"  - U statistic: {stat:.4f}")
                 #    st.write(f"  - P-value: {p_value:.4f}")
                 #    st.write(f"  - Effect size (r): {effect_size:.4f}")
-    
+            if count == k:
+                st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
     
