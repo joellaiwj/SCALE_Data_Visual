@@ -1386,3 +1386,15 @@ with tabs[3]:
         summary_table['effect_size'] = pd.Series(effect_sizes)
         
         st.dataframe(summary_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=False)
+
+        st.markdown("Wilcoxon Signed Rank Test Results")
+        # Wilcoxon Signed Rank test
+        results = {}
+        for col in Qn_Index:
+            stat, p_val = stats.wilcoxon(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+            results[col] = {'wilcoxon_stat': stat, 'p_val': p_val}
+    
+        # Summary table
+        summary_table = pd.DataFrame.from_dict(results, orient='index')
+        
+        st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
