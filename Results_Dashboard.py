@@ -1339,8 +1339,8 @@ with tabs[3]:
         plt.tight_layout()
         st.pyplot(fig,use_container_width=True)
 
-        st.markdown("Paired t-test is used when comparing two sets of related data, typically pre-test and post-test measurements from the same group of subjects. The differences between the paired observations should be approximately normally distributed.")
-        st.markdown("The Wilcoxon Signed Rank Test is used for paired data but is a non-parametric alternative to the paired t-test. This test does not assume normality and can be used for data that is not normally distributed.")
+        st.markdown("The **Paired t-test** is used when comparing two sets of related data, typically pre-test and post-test measurements from the same group of subjects. The differences between the paired observations should be approximately normally distributed.")
+        st.markdown("The **Wilcoxon Signed Rank Test** is used for paired data but is a non-parametric alternative to the paired t-test. This test does not assume normality and can be used for data that is not normally distributed.")
 
     with col2_2:
         st.markdown("I had/have")
