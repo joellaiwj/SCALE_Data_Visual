@@ -1389,12 +1389,12 @@ with tabs[3]:
 
         st.markdown("Wilcoxon Signed Rank Test Results")
         # Wilcoxon Signed Rank test
-        results = {}
-        for col in Qn_Index:
-            stat, p_val = stats.wilcoxon(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
-            results[col] = {'wilcoxon_stat': stat, 'p_val': p_val}
+        #results = {}
+        #for col in Qn_Index:
+        #    stat, p_val = stats.wilcoxon(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+        #    results[col] = {'wilcoxon_stat': stat, 'p_val': p_val}
     
         # Summary table
-        summary_table = pd.DataFrame.from_dict(results, orient='index')
+        #summary_table = pd.DataFrame.from_dict(results, orient='index')
         
-        st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
+        #st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
