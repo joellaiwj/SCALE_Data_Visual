@@ -1394,7 +1394,7 @@ with tabs[3]:
             stat, p_val = stats.wilcoxon(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
             results[col] = {'wilcoxon_stat': stat, 'p_val': p_val}
     
-         Summary table
+        # Summary table
         summary_table = pd.DataFrame.from_dict(results, orient='index')
         
         st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
