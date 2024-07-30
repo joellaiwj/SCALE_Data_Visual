@@ -53,8 +53,9 @@ with tabs[0]:
     pre_N = len(df_pre)
     st.header(f":green[PRE-Intervention Raw Data (N={pre_N})]" )
     st.dataframe(df_pre)
-    
-    st.header(":green[POST-Intervention Raw Data]")
+
+    post_N = len(df_post
+    st.header(f":green[POST-Intervention Raw Data (N={post_N})]" )
     st.dataframe(df_post)
 
 with tabs[1]:
