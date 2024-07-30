@@ -51,13 +51,13 @@ st.markdown(css, unsafe_allow_html=True)
 
 with tabs[0]:
     # Filter options
-    filter_options = ["All", "Both"]
+    filter_options = ["All participants", "Only participants who take part in both surveys"]
     
     # User selection
     selected_filter = st.radio("Filter by Participation Status", filter_options)
     
     # Filter the dataset
-    if selected_filter == "Both":
+    if selected_filter == "Only participants who take part in both surveys":
         df_pre = df_pre[df_pre["Participation_Status"] == "Both"]
     else:
         df_pre = df_pre  # When "All" is selected, show all data
