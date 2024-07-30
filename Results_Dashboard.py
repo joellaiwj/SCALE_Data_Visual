@@ -1153,7 +1153,7 @@ with tabs[3]:
     st.markdown("This section show the results when we performs hierarchical clustering on survey data from STEM and SHAPE disciplines, \
     calculates mean scores for each cluster, and performs a Mann-Whitney U test on paired clusters.")
     
-    df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
+    #df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
     
     col1_1, col1_2 = st.columns((1,1))
     with col1_1:
