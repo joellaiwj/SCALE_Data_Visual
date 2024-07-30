@@ -54,7 +54,7 @@ with tabs[0]:
     filter_options = ["All", "Both"]
     
     # User selection
-    selected_filter = st.selectbox("Filter by Participation Status", filter_options)
+    selected_filter = st.radio("Filter by Participation Status", filter_options)
     
     # Filter the dataset
     if selected_filter == "Both":
