@@ -50,7 +50,7 @@ css = '''
 st.markdown(css, unsafe_allow_html=True)
 
 with tabs[0]:
-    pre_N = len(pre_df)
+    pre_N = len(df_pre)
     st.header(":green[PRE-Intervention Raw Data {pre_N}]" )
     st.dataframe(df_pre)
     
