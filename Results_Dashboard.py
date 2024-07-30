@@ -50,6 +50,18 @@ css = '''
 st.markdown(css, unsafe_allow_html=True)
 
 with tabs[0]:
+    # Filter options
+    filter_options = ["All", "Both"]
+    
+    # User selection
+    selected_filter = st.selectbox("Filter by Participation Status", filter_options)
+    
+    # Filter the dataset
+    if selected_filter == "Both":
+        df_pre = df_pre[df_pre["Participation_Status"] == "Both"]
+    else:
+        df_pre = df_pre  # When "All" is selected, show all data
+    
     pre_N = len(df_pre)
     st.header(f":green[PRE-Intervention Raw Data (N={pre_N})]" )
     st.dataframe(df_pre)
