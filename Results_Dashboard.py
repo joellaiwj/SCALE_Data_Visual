@@ -1379,7 +1379,7 @@ with tabs[3]:
 
     st.subheader(":blue[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from Intervention]")
     st.markdown("This section show the results when students were asked to retrospectively examine their agreement to a set of statements prior to using InPlace and now.")
-    col2_1, col2_2, col2_3 = st.columns((3,1,1))
+    col2_1, col2_2, col2_3 = st.columns((2,1,2))
     with col2_1:
         Qn_Index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
@@ -1399,9 +1399,6 @@ with tabs[3]:
             axes[i].set_ylim(0,71)
         plt.tight_layout()
         st.pyplot(fig,use_container_width=True)
-
-        st.markdown("The **Paired t-test** is used when comparing two sets of related data, typically pre-test and post-test measurements from the same group of subjects. The differences between the paired observations should be approximately normally distributed.")
-        st.markdown("The **Wilcoxon Signed Rank Test** is used for paired data but is a non-parametric alternative to the paired t-test. This test does not assume normality and can be used for data that is not normally distributed.")
 
     with col2_2:
         st.markdown("I had/have")
@@ -1427,38 +1424,42 @@ with tabs[3]:
         st.dataframe(mapping_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=True)
     
     with col2_3:
-        st.markdown("Paired T-Test Results")
-        # Paired t-test
-        results = {}
-        for col in Qn_Index:
-            t_stat, p_val = stats.ttest_rel(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
-            results[col] = {'t_stat': t_stat, 'p_val': p_val}
-
-        # Effect size (Cohen's d)
-        def cohens_d(x, y):
-            nx = len(x)
-            ny = len(y)
-            dof = nx + ny - 2
-            return (x.mean() - y.mean()) / (((nx - 1) * x.var() + (ny - 1) * y.var()) / dof) ** 0.5
-
-        effect_sizes = {}
-        for col in Qn_Index:
-            effect_sizes[col] = cohens_d(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
-        
-        # Summary table
-        summary_table = pd.DataFrame.from_dict(results, orient='index')
-        summary_table['effect_size'] = pd.Series(effect_sizes)
-        
-        st.dataframe(summary_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=False)
-
-        st.markdown("Wilcoxon Signed Rank Test Results")
-        # Wilcoxon Signed Rank test
-        results = {}
-        for col in Qn_Index:
-            stat, p_val = stats.wilcoxon(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
-            results[col] = {'wilcoxon_stat': stat, 'p_val': p_val}
+        col2_3_1, col2_3_2 = st.columns((1,1))
+        st.markdown("The **Paired t-test** is used when comparing two sets of related data, typically pre-test and post-test measurements from the same group of subjects. The differences between the paired observations should be approximately normally distributed.")
+        st.markdown("The **Wilcoxon Signed Rank Test** is used for paired data but is a non-parametric alternative to the paired t-test. This test does not assume normality and can be used for data that is not normally distributed.")
+        with col2_3_1:
+            st.markdown("Paired T-Test Results")
+            # Paired t-test
+            results = {}
+            for col in Qn_Index:
+                t_stat, p_val = stats.ttest_rel(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+                results[col] = {'t_stat': t_stat, 'p_val': p_val}
     
-        # Summary table
-        summary_table = pd.DataFrame.from_dict(results, orient='index')
+            # Effect size (Cohen's d)
+            def cohens_d(x, y):
+                nx = len(x)
+                ny = len(y)
+                dof = nx + ny - 2
+                return (x.mean() - y.mean()) / (((nx - 1) * x.var() + (ny - 1) * y.var()) / dof) ** 0.5
+    
+            effect_sizes = {}
+            for col in Qn_Index:
+                effect_sizes[col] = cohens_d(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+            
+            # Summary table
+            summary_table = pd.DataFrame.from_dict(results, orient='index')
+            summary_table['effect_size'] = pd.Series(effect_sizes)
+            
+            st.dataframe(summary_table,height=(len(Qn_Index)+1)*35+3,use_container_width=True,hide_index=False)
+        with col2_3_2:
+            st.markdown("Wilcoxon Signed Rank Test Results")
+            # Wilcoxon Signed Rank test
+            results = {}
+            for col in Qn_Index:
+                stat, p_val = stats.wilcoxon(df_post[f'1.2.{col}'], df_post[f'1.1.{col}'])
+                results[col] = {'wilcoxon_stat': stat, 'p_val': p_val}
         
-        st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
+            # Summary table
+            summary_table = pd.DataFrame.from_dict(results, orient='index')
+            
+            st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
