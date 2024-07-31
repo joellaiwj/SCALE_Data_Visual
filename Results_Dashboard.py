@@ -221,7 +221,7 @@ with tabs[1]:
             yaxis_title='Questions',
             legend_title='Responses',
             xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=False, tickangle = -90),
             width=1100,  # Set the width of the figure
             height=500,   # Set the height of the figure
             legend=dict(traceorder='reversed'),
