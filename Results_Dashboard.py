@@ -529,7 +529,7 @@ with tabs[1]:
     
     with col7_1:
         st.markdown("Please rate your agreement with the following statements:")
-        height = 80
+        bar_height = 80
         # List of specific columns to be plotted
         Question_13 = ['3.6 (Q13_A_3)', '3.6 (Q13_A_2)', '3.6 (Q13_A_1)']
         
