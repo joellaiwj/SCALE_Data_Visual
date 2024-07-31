@@ -22,7 +22,7 @@ font_settings = dict(
 )
 
 # Calculate the total height based on the number of questions
-bar_height = 20
+bar_height = 50
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
@@ -455,6 +455,7 @@ with tabs[1]:
         # Create the frequency DataFrame
         frequency_df_pre_11 = pd.DataFrame(frequency_data_11)
         hover_df_pre_11 = pd.DataFrame(hover_data_11)
+        total_height = bar_height * len(frequency_df_pre_11)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -495,7 +496,7 @@ with tabs[1]:
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
-            height=500,   # Set the height of the figure
+            height=total_height,   # Set the height of the figure
             legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
             font = font_settings
             )
@@ -557,6 +558,7 @@ with tabs[1]:
         # Create the frequency DataFrame
         frequency_df_pre_13 = pd.DataFrame(frequency_data_13)
         hover_df_pre_13 = pd.DataFrame(hover_data_13)
+        total_height = bar_height * len(frequency_df_pre_13)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -597,7 +599,7 @@ with tabs[1]:
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
-            height=500,   # Set the height of the figure
+            height=total_height,   # Set the height of the figure
             legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
             font = font_settings
             )
