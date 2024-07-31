@@ -491,7 +491,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 11',
             legend_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
@@ -529,7 +529,7 @@ with tabs[1]:
     
     with col7_1:
         st.markdown("Please rate your agreement with the following statements:")
-
+        height = 80
         # List of specific columns to be plotted
         Question_13 = ['3.6 (Q13_A_3)', '3.6 (Q13_A_2)', '3.6 (Q13_A_1)']
         
@@ -594,7 +594,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 13',
             legend_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
