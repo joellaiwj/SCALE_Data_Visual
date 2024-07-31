@@ -558,7 +558,6 @@ with tabs[1]:
         # Create the frequency DataFrame
         frequency_df_pre_13 = pd.DataFrame(frequency_data_13)
         hover_df_pre_13 = pd.DataFrame(hover_data_13)
-        total_height = bar_height * len(frequency_df_pre_13)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -599,7 +598,7 @@ with tabs[1]:
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
-            height=total_height,   # Set the height of the figure
+            height=400,   # Set the height of the figure
             legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
             font = font_settings
             )
