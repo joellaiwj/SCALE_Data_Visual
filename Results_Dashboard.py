@@ -22,7 +22,7 @@ font_settings = dict(
 )
 
 # Calculate the total height based on the number of questions
-bar_height = 50
+bar_height = 40
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
