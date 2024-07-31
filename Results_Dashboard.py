@@ -220,11 +220,11 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Questions',
             legend_title='Responses',
-            xaxis=dict(showgrid=False, tickfont=dict(size=16)),
-            yaxis=dict(showgrid=False, tickfont=dict(size=16)),
+            xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
             height=500,   # Set the height of the figure
-            legend=dict(traceorder='reversed'),
+            legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
             font = font_settings
             )
         
