@@ -1335,17 +1335,33 @@ with tabs[3]:
             if count == k:
                 st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
     st.subheader(":blue[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
-    st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) required for the job of their choice.")
-    skills_df = pd.read_excel('Classified_Skills.xlsx')
+    
+    
+    st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for two questions using KNN.")
+    col2_1, col2_2 = st.columns((1,1))
+    with col2_1:
+        important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheetname="pre")
+    
+        # Calculate the distribution of skill types
+        skill_distribution = important_skills_df['CLassification'].value_counts().reset_index()
+        skill_distribution.columns = ['Classification', 'Count']
+    
+        # Create a pie chart with Plotly
+        fig = px.pie(skill_distribution, values='Count', names='Classification')
+        fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
+        st.plotly_chart(fig)
 
-    # Calculate the distribution of skill types
-    skill_distribution = skills_df['Type'].value_counts().reset_index()
-    skill_distribution.columns = ['Type', 'Count']
-
-    # Create a pie chart with Plotly
-    fig = px.pie(skill_distribution, values='Count', names='Type')
-    fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
-    st.plotly_chart(fig)
+    with col2_2:
+        gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheetname="post")
+    
+        # Calculate the distribution of skill types
+        skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
+        skill_distribution.columns = ['Classification', 'Count']
+    
+        # Create a pie chart with Plotly
+        fig = px.pie(skill_distribution, values='Count', names='Classification')
+        fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
+        st.plotly_chart(fig)
 
 
     st.subheader(":blue[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from Intervention]")
