@@ -28,8 +28,8 @@ st.set_page_config(page_title="SCALE Analysis",page_icon=":bar_chart:",layout="w
 
 st.title(":bar_chart: SCALE Analysis")
 
-df_pre = pd.read_excel("PRE_RAW_COMPLETED_240711.xlsx")
-df_post = pd.read_excel("POST_RAW_COMPLETED_240711.xlsx")
+df_pre = pd.read_excel("PRE_COMPLETED_240711.xlsx")
+df_post = pd.read_excel("POST_COMPLETED_240711.xlsx")
 
 # Extract abbreviations for "College" and "School" columns
 df_pre['College'] = df_pre['College'].apply(extract_abbreviation)
@@ -594,10 +594,10 @@ with tabs[1]:
     with col8_1:
         st.markdown("Rank the following skill groups, in order of importance, according to how you perceive employers will rank them.")
         Distribution = [
-            [34, 30, 28, 39, 57, 0],
-            [12, 22, 58, 45, 29, 22],
-            [14, 51, 27, 41, 35, 34],
-            [0, 51, 41, 29, 33, 20]
+            [31, 28, 27, 37, 52, 0],
+            [9, 22, 55, 39, 28, 22],
+            [16, 47, 23, 40, 34, 15],
+            [0, 47, 39, 28, 30, 31]
         ]
         
         
@@ -606,13 +606,13 @@ with tabs[1]:
             'Rank': [1, 2, 3, 4],
             'Choice': ['Soft', 'Functional', 'Requirement', 'Domain'],
             'Distribution': [
-                [18.085106382978726, 15.957446808510639, 14.893617021276595, 20.74468085106383, 30.319148936170215, 0.0],
-                [6.382978723404255, 11.702127659574469, 30.851063829787233, 23.93617021276596, 15.425531914893616, 11.702127659574469],
-                [7.446808510638298, 27.127659574468083, 14.361702127659576, 21.808510638297875, 18.617021276595743, 10.638297872340425],
-                [0.0, 27.127659574468083, 21.808510638297875, 15.425531914893616, 17.5531914893617, 18.085106382978726]
+                [17.71428571,16,15.42857143,21.14285714,29.71428571,0.0],
+                [5.142857143,12.57142857,31.42857143,22.28571429,16,12.57142857],
+                [9.142857143,26.85714286,13.14285714,22.85714286,19.42857143,8.571428571],
+                [0.0,26.85714286,22.28571429,16,17.14285714,17.71428571]
             ],
-            'Score': [2.799, 2.526, 2.390, 2.286],
-            'Times Ranked': [57, 29, 35, 33]
+            'Score': [2.785, 2.507, 2.424, 2.285],
+            'Times Ranked': [52, 28, 34, 30]
         }
         colors = ['#ffffff', '#de425b', '#f3babc', '#aecdc2', '#488f31', '#ffffff']
         
