@@ -1338,28 +1338,41 @@ with tabs[3]:
     
     
     st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for two questions using KNN.")
+
+    # Define color mapping for the classifications
+    color_mapping = {
+        'Soft skills': '#636EFA',
+        'Functional skills': '#EF553B',
+        'Domain skills': '#00CC96',
+        'Requirement skills': '#AB63FA'
+    }
+    
     col2_1, col2_2 = st.columns((1,1))
     with col2_1:
         important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
-    
+
+        st.markdown("Skill type students deemed important")
         # Calculate the distribution of skill types
         skill_distribution = important_skills_df['Classification'].value_counts().reset_index()
         skill_distribution.columns = ['Classification', 'Count']
     
         # Create a pie chart with Plotly
-        fig = px.pie(skill_distribution, values='Count', names='Classification')
+        fig = px.pie(skill_distribution, values='Count', names='Classification',
+                 color='Classification', color_discrete_map=color_mapping)
         fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
         st.plotly_chart(fig)
 
     with col2_2:
         gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
-    
+
+        st.markdown("Skill type students identify as skill gap")
         # Calculate the distribution of skill types
         skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
         skill_distribution.columns = ['Classification', 'Count']
     
         # Create a pie chart with Plotly
-        fig = px.pie(skill_distribution, values='Count', names='Classification')
+        fig = px.pie(skill_distribution, values='Count', names='Classification',
+                 color='Classification', color_discrete_map=color_mapping)
         fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
         st.plotly_chart(fig)
 
