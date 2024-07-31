@@ -488,11 +488,12 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Questions',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
+            xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
-            height=400,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            height=500,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
@@ -589,11 +590,12 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Questions',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
+            xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
-            height=300,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            height=500,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
