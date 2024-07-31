@@ -58,7 +58,7 @@ with tabs[0]:
     
     # Filter the dataset
     if selected_filter == "Only participants who take part in both surveys":
-        df_pre = df_pre[df_pre["Participation_Status"] == "Both"]
+        df_pre = df_pre[df_pre["Participation_Status"] == "Yes"]
     else:
         df_pre = df_pre  # When "All" is selected, show all data
     
