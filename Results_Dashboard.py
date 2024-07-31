@@ -1343,7 +1343,7 @@ with tabs[3]:
         important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
     
         # Calculate the distribution of skill types
-        skill_distribution = important_skills_df['CLassification'].value_counts().reset_index()
+        skill_distribution = important_skills_df['Classification'].value_counts().reset_index()
         skill_distribution.columns = ['Classification', 'Count']
     
         # Create a pie chart with Plotly
