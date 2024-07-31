@@ -1347,34 +1347,44 @@ with tabs[3]:
         'Requirement skills': '#AB63FA'
     }
     
-    col2_1, col2_2 = st.columns((1,1))
+    col2_1, col2_2 = st.columns((3,1))
     with col2_1:
-        important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
-
-        st.markdown("Skill type students deemed important")
-        # Calculate the distribution of skill types
-        skill_distribution = important_skills_df['Classification'].value_counts().reset_index()
-        skill_distribution.columns = ['Classification', 'Count']
+        col2_1_1, col2_1_2 = st.columns((1,1))
+        with col2_1_1:
+            important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
     
-        # Create a pie chart with Plotly
-        fig = px.pie(skill_distribution, values='Count', names='Classification',
-                 color='Classification', color_discrete_map=color_mapping)
-        fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
-        st.plotly_chart(fig)
+            st.markdown("Skill type students deemed important")
+            # Calculate the distribution of skill types
+            skill_distribution = important_skills_df['Classification'].value_counts().reset_index()
+            skill_distribution.columns = ['Classification', 'Count']
+        
+            # Create a pie chart with Plotly
+            fig = px.pie(skill_distribution, values='Count', names='Classification',
+                     color='Classification', color_discrete_map=color_mapping)
+            fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
+            st.plotly_chart(fig)
 
+        with col2_1_2:
+            gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
+    
+            st.markdown("Skill type students identify as skill gap")
+            # Calculate the distribution of skill types
+            skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
+            skill_distribution.columns = ['Classification', 'Count']
+        
+            # Create a pie chart with Plotly
+            fig = px.pie(skill_distribution, values='Count', names='Classification',
+                     color='Classification', color_discrete_map=color_mapping)
+            fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
+            st.plotly_chart(fig)
     with col2_2:
-        gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
-
-        st.markdown("Skill type students identify as skill gap")
-        # Calculate the distribution of skill types
-        skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
-        skill_distribution.columns = ['Classification', 'Count']
-    
-        # Create a pie chart with Plotly
-        fig = px.pie(skill_distribution, values='Count', names='Classification',
-                 color='Classification', color_discrete_map=color_mapping)
-        fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
-        st.plotly_chart(fig)
+        st.markdown("""
+        ### Summary and Insights
+        - **Soft Skills**: Highly valued but perceived as a smaller gap, indicating that students recognize their importance but feel more confident in their abilities here.
+        - **Functional Skills**: Both highly valued and identified as a significant gap, suggesting a need for increased focus on developing these skills through education or training programs.
+        - **Domain Skills**: Less emphasis on both importance and gap, indicating a potential secondary priority for students compared to soft and functional skills.
+        - **Requirement Skills**: Not seen as important or a gap, possibly indicating these skills are considered less relevant or already adequately covered in their education or training.
+        """)
 
 
     st.subheader(":blue[Evolutionary Analysis of Post-then-Pre Survey Question on Knowledge Gains from Intervention]")
