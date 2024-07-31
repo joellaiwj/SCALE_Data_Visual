@@ -224,7 +224,8 @@ with tabs[1]:
             yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=500,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            legend=dict(traceorder='reversed'),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
