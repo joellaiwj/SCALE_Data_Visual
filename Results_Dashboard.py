@@ -218,7 +218,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Question 2',
             legend_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
@@ -232,7 +232,7 @@ with tabs[1]:
     
     with col2_2:
         # List of specific columns to be plotted
-        Question_4_Description = [
+        Question_2_Description = [
             'Relevance to your major or desired career field',
             'Recommendation from a friend or peer',
             'Recommendation from a career/course advisor',
@@ -251,7 +251,7 @@ with tabs[1]:
         
         mapping_table = pd.DataFrame({
         'Label': new_labels,
-        'Survey Question': Question_4_Description
+        'Survey Question': Question_2_Description
         })
         
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
