@@ -53,21 +53,30 @@ with tabs[0]:
     # Filter options
     filter_options = ["All participants", "Only participants who take part in both surveys"]
     
-    # User selection
-    selected_filter = st.radio("Filter by Participation Status", filter_options)
+    pre_N = len(df_pre)
+    st.header(f":green[PRE-Intervention Raw Data (N={pre_N})]" )
+     # User selection
+    pre_selected_filter = st.radio("Filter Pre-Intervention by Participation Status", filter_options)
     
     # Filter the dataset
-    if selected_filter == "Only participants who take part in both surveys":
+    if pre_selected_filter == "Only participants who take part in both surveys":
         df_pre = df_pre[df_pre["Participation_Status"] == "Yes"]
     else:
         df_pre = df_pre  # When "All" is selected, show all data
     
-    pre_N = len(df_pre)
-    st.header(f":green[PRE-Intervention Raw Data (N={pre_N})]" )
     st.dataframe(df_pre)
 
     post_N = len(df_post)
     st.header(f":green[POST-Intervention Raw Data (N={post_N})]" )
+    # User selection
+    post_selected_filter = st.radio("Filter Post-Intervention by Participation Status", filter_options)
+    
+    # Filter the dataset
+    if post_selected_filter == "Only participants who take part in both surveys":
+        df_post = df_post[df_post["Participation_Status"] == "Yes"]
+    else:
+        df_post = df_post  # When "All" is selected, show all data
+        
     st.dataframe(df_post)
 
 with tabs[1]:
