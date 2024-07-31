@@ -491,7 +491,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Pre-Intervention Question 4',
+            yaxis_title='Pre-Intervention Question 11',
             legend_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
             yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
@@ -593,12 +593,12 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Pre-Intervention Question 4',
+            yaxis_title='Pre-Intervention Question 13',
             legend_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
             yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
             width=1100,  # Set the width of the figure
-            height=300,   # Set the height of the figure
+            height=400,   # Set the height of the figure
             legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
             font = font_settings
             )
