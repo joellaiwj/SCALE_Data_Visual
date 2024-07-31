@@ -221,11 +221,10 @@ with tabs[1]:
             yaxis_title='Questions',
             legend_title='Responses',
             xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False, tickangle = -90),
+            yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=500,   # Set the height of the figure
-            legend=dict(traceorder='reversed'),
-            font=font_settings
+            legend=dict(traceorder='reversed')
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
