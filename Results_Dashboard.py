@@ -1337,7 +1337,7 @@ with tabs[3]:
     st.subheader(":blue[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
     
     
-    st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for two questions using KNN.")
+    st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for the following two questions using KNN:")
 
     # Define color mapping for the classifications
     color_mapping = {
