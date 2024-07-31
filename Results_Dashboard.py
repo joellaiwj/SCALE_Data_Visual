@@ -1353,7 +1353,7 @@ with tabs[3]:
         with col2_1_1:
             important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
     
-            st.markdown("Skill type students deemed important")
+            st.markdown("**Skill type students deemed important for their first job**")
             # Calculate the distribution of skill types
             skill_distribution = important_skills_df['Classification'].value_counts().reset_index()
             skill_distribution.columns = ['Classification', 'Count']
@@ -1367,7 +1367,7 @@ with tabs[3]:
         with col2_1_2:
             gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
     
-            st.markdown("Skill type students identify as skill gap")
+            st.markdown("**Skill type students identify as skill gap**")
             # Calculate the distribution of skill types
             skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
             skill_distribution.columns = ['Classification', 'Count']
@@ -1378,8 +1378,8 @@ with tabs[3]:
             fig.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
             st.plotly_chart(fig)
     with col2_2:
+        st.subheader("Summary and Insights:")
         st.markdown("""
-        ### Summary and Insights
         - **Soft Skills**: Highly valued but perceived as a smaller gap, indicating that students recognize their importance but feel more confident in their abilities here.
         - **Functional Skills**: Both highly valued and identified as a significant gap, suggesting a need for increased focus on developing these skills through education or training.
         - **Domain Skills**: Less emphasis on both importance and gap, indicating a potential secondary priority for students compared to soft and functional skills.
