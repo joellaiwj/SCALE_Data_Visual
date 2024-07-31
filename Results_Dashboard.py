@@ -21,6 +21,9 @@ font_settings = dict(
     size=16
 )
 
+# Calculate the total height based on the number of questions
+bar_height = 20
+
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
     start = text.find('(')
@@ -183,6 +186,7 @@ with tabs[1]:
         # Create the frequency DataFrame
         frequency_df_pre_4 = pd.DataFrame(frequency_data_4)
         hover_df_pre_4 = pd.DataFrame(hover_data_4)
+        total_height = bar_height * len(frequency_df_pre_4)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -218,12 +222,12 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Question 2',
+            yaxis_title='Pre-Intervention Question 4',
             legend_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             yaxis=dict(showgrid=False, tickfont=dict(size=16), title_font=dict(size=18)),
             width=1100,  # Set the width of the figure
-            height=500,   # Set the height of the figure
+            height=total_height,   # Set the height of the figure
             legend=dict(traceorder='reversed', font=dict(size=16), title_font=dict(size=18)),
             font = font_settings
             )
@@ -232,7 +236,7 @@ with tabs[1]:
     
     with col2_2:
         # List of specific columns to be plotted
-        Question_2_Description = [
+        Question_4_Description = [
             'Relevance to your major or desired career field',
             'Recommendation from a friend or peer',
             'Recommendation from a career/course advisor',
@@ -251,7 +255,7 @@ with tabs[1]:
         
         mapping_table = pd.DataFrame({
         'Label': new_labels,
-        'Survey Question': Question_2_Description
+        'Survey Question': Question_4_Description
         })
         
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
