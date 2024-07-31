@@ -1340,7 +1340,7 @@ with tabs[3]:
     st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for two questions using KNN.")
     col2_1, col2_2 = st.columns((1,1))
     with col2_1:
-        important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="pre")
+        important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
     
         # Calculate the distribution of skill types
         skill_distribution = important_skills_df['CLassification'].value_counts().reset_index()
@@ -1352,7 +1352,7 @@ with tabs[3]:
         st.plotly_chart(fig)
 
     with col2_2:
-        gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="post")
+        gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
     
         # Calculate the distribution of skill types
         skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
