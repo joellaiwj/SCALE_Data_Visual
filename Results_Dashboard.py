@@ -15,6 +15,11 @@ from matplotlib.colors import ListedColormap
 from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
 from scipy.spatial.distance import cdist
 
+# Font size settings
+font_settings = dict(
+    family="Arial, sans-serif",
+    size=16
+)
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
@@ -117,7 +122,7 @@ with tabs[1]:
         counts_college = df_pre['College'].value_counts().reset_index()
         counts_college.columns = ['College', 'Count']
         fig_college = px.pie(counts_college, values='Count', names='College')
-        fig_college.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'))
+        fig_college.update_layout(legend=dict(x=0.1,y=1,traceorder='normal'), font=font_settings)
         st.plotly_chart(fig_college,use_container_width=True)
     
     with col1_2:
@@ -126,7 +131,7 @@ with tabs[1]:
         counts_school = df_pre['School'].value_counts().reset_index()
         counts_school.columns = ['School', 'Count']
         fig_school = px.pie(counts_school, values='Count', names='School')
-        fig_school.update_layout(legend=dict(x=0.0,y=1,traceorder='normal'))
+        fig_school.update_layout(legend=dict(x=0.0,y=1,traceorder='normal'), font=font_settings)
         st.plotly_chart(fig_school,use_container_width=True)
         
     with col1_3:
@@ -135,7 +140,7 @@ with tabs[1]:
         counts_study = df_pre['Year'].value_counts().reset_index()
         counts_study.columns = ['Year', 'Count']
         fig_study = px.pie(counts_study, values='Count', names='Year')
-        fig_study.update_layout(legend=dict(x=0.75,y=1,traceorder='normal'))
+        fig_study.update_layout(legend=dict(x=0.75,y=1,traceorder='normal'), font=font_settings)
         st.plotly_chart(fig_study,use_container_width=True)
     
     st.header(":green[Response to Survey Questions]")
@@ -219,7 +224,8 @@ with tabs[1]:
             yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=500,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            legend=dict(traceorder='reversed'),
+            font=font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
