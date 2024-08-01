@@ -18,7 +18,7 @@ from scipy.spatial.distance import cdist
 # Font size settings
 font_settings = dict(
     family="Arial, sans-serif",
-    size=16
+    size=14
 )
 
 # Calculate the total height based on the number of questions
