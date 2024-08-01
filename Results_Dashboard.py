@@ -362,7 +362,7 @@ with tabs[1]:
             font_size=12,
             width=1600,  # Set the width of the figure
             height=800,   # Set the height of the figure
-            margin=dict(l=20, r=20, t=20, b=20)
+            margin=dict(t=20)
         )
         
         st.plotly_chart(fig,use_container_width=True)
