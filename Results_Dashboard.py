@@ -35,6 +35,27 @@ def extract_abbreviation(text):
 st.set_page_config(page_title="SCALE Analysis",page_icon=":bar_chart:",layout="wide")
 
 st.title(":bar_chart: SCALE Analysis")
+header = st.container()
+header.title("Here is a sticky header")
+header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
+
+### Custom CSS for the sticky header
+st.markdown(
+    """
+<style>
+    div[data-testid="stVerticalBlock"] div:has(div.fixed-header) {
+        position: sticky;
+        top: 2.875rem;
+        background-color: white;
+        z-index: 999;
+    }
+    .fixed-header {
+        border-bottom: 1px solid black;
+    }
+</style>
+    """,
+    unsafe_allow_html=True
+)
 
 df_pre = pd.read_excel("PRE_COMPLETED_240711.xlsx")
 df_post = pd.read_excel("POST_COMPLETED_240711.xlsx")
