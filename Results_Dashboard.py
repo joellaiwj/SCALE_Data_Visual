@@ -991,7 +991,7 @@ with tabs[2]:
     col4_1, col4_2 = st.columns((2,1))
     
     with col4_1:
-        st.markdown("This question is about the **the perceived usefulness of InPace** beyond your first. Please rate your agreement with the following statements:")
+        st.markdown("This question is about the **the perceived usefulness of InPace** beyond your first job. Please rate your agreement with the following statements:")
 
         # List of specific columns to be plotted
         Question_5 = ['2.2 (Q5_A_1)', '2.2 (Q5_A_2)', '2.2 (Q5_A_3)']
@@ -1086,7 +1086,7 @@ with tabs[2]:
     col5_1, col5_2 = st.columns((2,1))
     
     with col5_1:
-        st.markdown("This question is about the **the perceived usefulness of InPace** beyond your first. Please rate your agreement with the following statements:")
+        st.markdown("This question is about the **features and usability of InPlace**. Please rate your agreement with the following statements:")
 
         # List of specific columns to be plotted
         Question_6 = ['3.1 (Q6_A_1)', '3.1 (Q6_A_2)', '3.1 (Q6_A_3)', '3.1 (Q6_A_4)', '3.1 (Q6_A_5)', '3.1 (Q6_A_6)', '3.1 (Q6_A_7)']
