@@ -784,7 +784,8 @@ with tabs[2]:
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
             legend=dict(traceorder='reversed'),
-            font = font_settings
+            font = font_settings,
+            margin=dict(l=20, r=20, t=20, b=20)
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
