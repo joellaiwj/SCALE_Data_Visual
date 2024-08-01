@@ -1290,7 +1290,6 @@ with tabs[3]:
                 shape_cluster_mean = shape_cluster_data.mean().mean()
                 shape_cluster_means[cluster] = shape_cluster_mean
                 
-            
             # Print mean scores for each cluster
             st.markdown("**Mean Scores for STEM Clusters:**")
             for cluster, mean_score in stem_cluster_means.items():
@@ -1337,7 +1336,7 @@ with tabs[3]:
                 r = z / np.sqrt(N)  # Effect size
                 
                 mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value, r)
-            count = 0
+            #count = 0
             for clusters, result in mannwhitney_results.items():
                 stem_cluster, shape_cluster = clusters
                 stat, p_value, effect_size = result
@@ -1348,13 +1347,13 @@ with tabs[3]:
                     st.write(f"  - P-value: {p_value:.4f}")
                     st.write(f"  - Effect size (r): {effect_size:.4f}")
                 else:
-                    count += 1
-                #    st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
-                #    st.write(f"  - U statistic: {stat:.4f}")
-                #    st.write(f"  - P-value: {p_value:.4f}")
-                #    st.write(f"  - Effect size (r): {effect_size:.4f}")
-            if count == k:
-                st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
+                    #count += 1
+                    st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
+                    st.write(f"  - U statistic: {stat:.4f}")
+                    st.write(f"  - P-value: {p_value:.4f}")
+                    st.write(f"  - Effect size (r): {effect_size:.4f}")
+            #if count == k:
+                #st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
     st.subheader(":blue[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
 
     # Define color mapping for the classifications
