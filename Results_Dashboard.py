@@ -1211,13 +1211,14 @@ with tabs[3]:
         
         # Hierarchical clustering for SHAPE Discipline questions
         shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
-        
-        # Select number of clusters
-        k = st.slider('Select number of STEM discipline clusters', 1, 14, 3, key = "stem_cluster_num")
-        k = k-1
 
-        l = st.slider('Select number of SHAPE discipline clusters', 1, 14, 3, key = "shape_cluster_num")
-        l = l-1
+        col1_1_1, col1_1_2 = st.columns((1,1))
+        with col1_1_1:
+            k = st.slider('Select number of STEM discipline clusters', 1, 14, 3, key = "stem_cluster_num")
+            k = k-1
+        with col1_1_2:
+            l = st.slider('Select number of SHAPE discipline clusters', 1, 14, 3, key = "shape_cluster_num")
+            l = l-1
         
         # Plotting dendrograms
         fig, axes = plt.subplots(1, 2, figsize=(16, 8))
