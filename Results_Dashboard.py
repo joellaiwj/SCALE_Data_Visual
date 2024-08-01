@@ -361,7 +361,8 @@ with tabs[1]:
         fig.update_layout(
             font_size=12,
             width=1600,  # Set the width of the figure
-            height=800   # Set the height of the figure
+            height=800,   # Set the height of the figure
+            margin=dict(l=20, r=20, t=20, b=20)
         )
         
         st.plotly_chart(fig,use_container_width=True)
