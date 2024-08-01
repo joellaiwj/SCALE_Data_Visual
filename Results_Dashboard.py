@@ -1250,13 +1250,13 @@ with tabs[3]:
 
         with col1_2_1:
             k = k+1
-            l = k+1
+            l = l+1
             # Get cluster assignments for STEM and SHAPE groups
             stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
             shape_clusters = fcluster(shape_linkage, l, criterion='maxclust')
         
             # Map cluster labels to questions for STEM
-            stem_cluster_members = {i: [] for i in range(1, k + 1)}
+            stem_cluster_members = {i: [] for i in range(1, k+1)}
             for question, cluster in zip(stem_data_transposed.index, stem_clusters):
                 stem_cluster_members[cluster].append(question)
         
@@ -1265,7 +1265,7 @@ with tabs[3]:
                 st.write(f"Cluster {cluster}: {', '.join(members)}")
         
             # Map cluster labels to questions for SHAPE
-            shape_cluster_members = {i: [] for i in range(1, l + 1)}
+            shape_cluster_members = {i: [] for i in range(1, l+1)}
             for question, cluster in zip(shape_data_transposed.index, shape_clusters):
                 shape_cluster_members[cluster].append(question)
         
