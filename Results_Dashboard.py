@@ -741,6 +741,7 @@ with tabs[2]:
         # Create the frequency DataFrame
         frequency_df_post_1 = pd.DataFrame(frequency_data_1)
         hover_df_post_1 = pd.DataFrame(hover_data_1)
+        total_height = bar_height * len(frequency_df_post_1)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -776,13 +777,14 @@ with tabs[2]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
-            width=600,  # Set the width of the figure
-            height=500,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            width=1100,  # Set the width of the figure
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
@@ -818,6 +820,7 @@ with tabs[2]:
         # Create the frequency DataFrame
         frequency_df_post_1 = pd.DataFrame(frequency_data_1)
         hover_df_post_1 = pd.DataFrame(hover_data_1)
+        total_height = bar_height * len(frequency_df_post_1)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -853,13 +856,14 @@ with tabs[2]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
-            width=600,  # Set the width of the figure
-            height=500,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            width=1100,  # Set the width of the figure
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
@@ -922,6 +926,7 @@ with tabs[2]:
         # Create the frequency DataFrame
         frequency_df_post_4 = pd.DataFrame(frequency_data_4)
         hover_df_post_4 = pd.DataFrame(hover_data_4)
+        total_height = bar_height * len(frequency_df_post_4)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -957,13 +962,14 @@ with tabs[2]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
+            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
             width=1100,  # Set the width of the figure
-            height=400,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
@@ -1021,6 +1027,7 @@ with tabs[2]:
         # Create the frequency DataFrame
         frequency_df_post_5 = pd.DataFrame(frequency_data_5)
         hover_df_post_5 = pd.DataFrame(hover_data_5)
+        total_height = bar_height * len(frequency_df_post_5)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -1056,13 +1063,14 @@ with tabs[2]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
+            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
             width=1100,  # Set the width of the figure
-            height=400,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
@@ -1116,6 +1124,7 @@ with tabs[2]:
         # Create the frequency DataFrame
         frequency_df_post_6 = pd.DataFrame(frequency_data_6)
         hover_df_post_6 = pd.DataFrame(hover_data_6)
+        total_height = bar_height * len(frequency_df_post_6)
         
         # Create the diverging bar chart
         fig_diverging = go.Figure()
@@ -1151,13 +1160,14 @@ with tabs[2]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Questions',
+            yaxis_title='Pre-Intervention Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=False),
+            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
             width=1100,  # Set the width of the figure
-            height=400,   # Set the height of the figure
-            legend=dict(traceorder='reversed')
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            font = font_settings
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
