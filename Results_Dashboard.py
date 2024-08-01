@@ -601,7 +601,7 @@ with tabs[1]:
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
-            height=300,   # Set the height of the figure
+            height=200,   # Set the height of the figure
             legend=dict(traceorder='reversed'),
             font = font_settings,
             margin=dict(l=20, r=20, t=20, b=20)
