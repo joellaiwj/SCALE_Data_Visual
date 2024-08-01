@@ -1215,6 +1215,9 @@ with tabs[3]:
         # Select number of clusters
         k = st.slider('Select number of clusters', 1, 14, 3)
         k = k-1
+
+        l = st.slider('Select number of clusters', 1, 14, 3)
+        l = l-1
         
         # Plotting dendrograms
         fig, axes = plt.subplots(1, 2, figsize=(16, 8))
@@ -1234,7 +1237,7 @@ with tabs[3]:
             shape_linkage,
             ax=axes[1],
             labels=shape_data_transposed.index,
-            color_threshold=shape_linkage[-k, 2]  # Color the top k+1 clusters
+            color_threshold=shape_linkage[-l, 2]  # Color the top k+1 clusters
         )
         axes[1].set_title('SHAPE Discipline')
         axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
@@ -1247,9 +1250,10 @@ with tabs[3]:
 
         with col1_2_1:
             k = k+1
+            l = k+1
             # Get cluster assignments for STEM and SHAPE groups
             stem_clusters = fcluster(stem_linkage, k, criterion='maxclust')
-            shape_clusters = fcluster(shape_linkage, k, criterion='maxclust')
+            shape_clusters = fcluster(shape_linkage, l, criterion='maxclust')
         
             # Map cluster labels to questions for STEM
             stem_cluster_members = {i: [] for i in range(1, k + 1)}
@@ -1261,7 +1265,7 @@ with tabs[3]:
                 st.write(f"Cluster {cluster}: {', '.join(members)}")
         
             # Map cluster labels to questions for SHAPE
-            shape_cluster_members = {i: [] for i in range(1, k + 1)}
+            shape_cluster_members = {i: [] for i in range(1, l + 1)}
             for question, cluster in zip(shape_data_transposed.index, shape_clusters):
                 shape_cluster_members[cluster].append(question)
         
@@ -1274,16 +1278,18 @@ with tabs[3]:
             stem_cluster_means = {}
             shape_cluster_means = {}
         
-            for cluster in range(1, k + 1):
+            for cluster in range(1, k+1):
                 stem_cluster_data = stem_data[stem_cluster_members[cluster]]
-                shape_cluster_data = shape_data[shape_cluster_members[cluster]]
-        
                 stem_cluster_mean = stem_cluster_data.mean().mean()
-                shape_cluster_mean = shape_cluster_data.mean().mean()
-        
                 stem_cluster_means[cluster] = stem_cluster_mean
+                
+
+            for cluster in range(1, l+1):
+                shape_cluster_data = shape_data[shape_cluster_members[cluster]]
+                shape_cluster_mean = shape_cluster_data.mean().mean()
                 shape_cluster_means[cluster] = shape_cluster_mean
-        
+                
+            
             # Print mean scores for each cluster
             st.markdown("**Mean Scores for STEM Clusters:**")
             for cluster, mean_score in stem_cluster_means.items():
