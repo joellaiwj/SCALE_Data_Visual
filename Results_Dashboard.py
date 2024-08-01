@@ -305,7 +305,7 @@ with tabs[1]:
             plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
             st.pyplot(cluster_map.fig,use_container_width=True)
             
-        col4_1, col4_2 = st.columns((20,1))
+    col4_1, col4_2 = st.columns((20,1))
     
     with col4_1:
         st.subheader(":blue[Industry and Skill Requirements:]")
