@@ -43,7 +43,7 @@ df_post = pd.read_excel("POST_COMPLETED_240711.xlsx")
 df_pre['College'] = df_pre['College'].apply(extract_abbreviation)
 df_pre['School'] = df_pre['School'].apply(extract_abbreviation)
 
-tab_names = [":male-technologist: **Data**", ":large_green_circle: **Pre-Intervetion**", ":large_orange_circle: **Post-Intervention**", ":bar_chart: **Analysis**"]
+tab_names = [":male-technologist: **Data**", ":large_green_circle: **Pre-Intervention**", ":large_orange_circle: **Post-Intervention**", ":bar_chart: **Analysis**"]
 
 tabs = st.tabs(tab_names)
 
