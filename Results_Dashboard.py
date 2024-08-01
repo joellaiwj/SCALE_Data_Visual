@@ -1213,10 +1213,10 @@ with tabs[3]:
         shape_linkage = linkage(shape_data_transposed, method='ward', metric='euclidean')
         
         # Select number of clusters
-        k = st.slider('Select number of clusters', 1, 14, 3)
+        k = st.slider('Select number of clusters', 1, 14, 3, key = "stem_cluster_num")
         k = k-1
 
-        l = st.slider('Select number of clusters', 1, 14, 3)
+        l = st.slider('Select number of clusters', 1, 14, 3, key = "shape_cluster_num")
         l = l-1
         
         # Plotting dendrograms
