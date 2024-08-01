@@ -34,9 +34,10 @@ def extract_abbreviation(text):
 
 st.set_page_config(page_title="SCALE Analysis",page_icon=":bar_chart:",layout="wide")
 
-st.title(":bar_chart: SCALE Analysis")
+#st.title(":bar_chart: SCALE Analysis")
+
 header = st.container()
-header.title("Here is a sticky header")
+header.title(":bar_chart: SCALE Analysis")
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 
 ### Custom CSS for the sticky header
