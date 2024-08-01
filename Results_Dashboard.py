@@ -18,7 +18,7 @@ from scipy.spatial.distance import cdist
 # Font size settings
 font_settings = dict(
     family="Arial, sans-serif",
-    size=20
+    size=16
 )
 
 # Calculate the total height based on the number of questions
@@ -224,11 +224,11 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Pre-Intervention Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
-            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            xaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            legend=dict(traceorder='reversed'),
             font = font_settings
             )
         
@@ -493,11 +493,11 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Pre-Intervention Question 3.3',
             legend_title='Responses',
-            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
-            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            xaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            legend=dict(traceorder='reversed'),
             font = font_settings
             )
         
@@ -596,11 +596,11 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Pre-Intervention Question 3.6',
             legend_title='Responses',
-            xaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
-            yaxis=dict(showgrid=False, tickfont=dict(size=20), title_font=dict(size=24)),
+            xaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=400,   # Set the height of the figure
-            legend=dict(traceorder='reversed', font=dict(size=20), title_font=dict(size=24)),
+            legend=dict(traceorder='reversed'),
             font = font_settings
             )
         
