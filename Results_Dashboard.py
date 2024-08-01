@@ -263,45 +263,49 @@ with tabs[1]:
     
     col3_1, col3_2, col3_3 = st.columns((1,3,1))
     with col3_2:
-        # Extract the 'RecordID' column for labeling
-        record_ids = '...' + df_pre['Record ID'].astype(str).str[-4:]
+        # Toggle for showing or hiding the chart
+        show_chart = st.checkbox("Show Dedrogram Heatmap")
+        
+        if show_chart:
+            # Extract the 'RecordID' column for labeling
+            record_ids = '...' + df_pre['Record ID'].astype(str).str[-4:]
+        
+            # Drop the 'RecordID' column for clustering analysis
+            df_pre2 = df_pre[Question_4]
+            
+            # Relabel columns to A-N
+            new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(Question_4))]
     
-        # Drop the 'RecordID' column for clustering analysis
-        df_pre2 = df_pre[Question_4]
+            df_pre2.columns = new_column_labels
+            
+            # Standardize the data
+            #scaler = StandardScaler()
+            #standardized_data = scaler.fit_transform(df_pre2)  # Replace with relevant columns
         
-        # Relabel columns to A-N
-        new_column_labels = [chr(i) for i in range(ord('A'), ord('A') + len(Question_4))]
-
-        df_pre2.columns = new_column_labels
+            # Define a custom colormap with 4 colors
+            custom_cmap = ListedColormap(['#de425b', '#f3babc', '#aecdc2', '#488f31'])
         
-        # Standardize the data
-        #scaler = StandardScaler()
-        #standardized_data = scaler.fit_transform(df_pre2)  # Replace with relevant columns
+            # Transpose the data to have questions as rows and responses as columns
+            #transposed_data = standardized_data.T
     
-        # Define a custom colormap with 4 colors
-        custom_cmap = ListedColormap(['#de425b', '#f3babc', '#aecdc2', '#488f31'])
-    
-        # Transpose the data to have questions as rows and responses as columns
-        #transposed_data = standardized_data.T
-
-        # Plot the clustermap with boxes
-        cluster_map = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, figsize=(20, 10), 
-                                     dendrogram_ratio=(.1, .1), cbar_pos=None, 
-                                     linewidths=2.0, linecolor='black')
+            # Plot the clustermap with boxes
+            cluster_map = sns.clustermap(df_pre2.T, method='ward', metric='euclidean', cmap=custom_cmap, figsize=(20, 10), 
+                                         dendrogram_ratio=(.1, .1), cbar_pos=None, 
+                                         linewidths=2.0, linecolor='black')
+            
+            cluster_map.ax_heatmap.set_xticks(np.arange(len(record_ids))+0.5)
+            cluster_map.ax_heatmap.set_xticklabels(record_ids, rotation=45, ha='right', fontsize=6)
         
-        cluster_map.ax_heatmap.set_xticks(np.arange(len(record_ids))+0.5)
-        cluster_map.ax_heatmap.set_xticklabels(record_ids, rotation=45, ha='right', fontsize=6)
-    
-        # Adjust y-tick labels: control the shift up
-        for label in cluster_map.ax_heatmap.yaxis.get_majorticklabels():
-            label.set_verticalalignment('center')
-            label.set_position((label.get_position()[0], label.get_position()[1] + 0.5))
-            label.set_x(-0.015)
-        
-        plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
-        st.pyplot(cluster_map.fig,use_container_width=True)
-        
-    col4_1, col4_2 = st.columns((20,1))
+            # Adjust y-tick labels: control the shift up
+            for label in cluster_map.ax_heatmap.yaxis.get_majorticklabels():
+                label.set_verticalalignment('center')
+                label.set_position((label.get_position()[0], label.get_position()[1] + 0.5))
+                label.set_x(-0.015)
+            
+            plt.tight_layout(pad=0.0, h_pad=0.0, w_pad=0.5)
+            st.pyplot(cluster_map.fig,use_container_width=True)
+            
+        col4_1, col4_2 = st.columns((20,1))
     
     with col4_1:
         st.subheader(":blue[Industry and Skill Requirements:]")
