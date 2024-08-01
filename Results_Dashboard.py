@@ -262,10 +262,11 @@ with tabs[1]:
         st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
     
     col3_1, col3_2, col3_3 = st.columns((1,3,1))
-    with col3_2:
+    with col3_1:
         # Toggle for showing or hiding the chart
         show_chart = st.checkbox("Show Dedrogram Heatmap")
         
+    with col3_2:
         if show_chart:
             # Extract the 'RecordID' column for labeling
             record_ids = '...' + df_pre['Record ID'].astype(str).str[-4:]
