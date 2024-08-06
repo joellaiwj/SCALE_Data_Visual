@@ -222,7 +222,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Pre-Intervention Question 2.1',
+            yaxis_title='Question 2.1',
             legend_title='Responses',
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=False),
@@ -498,7 +498,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Pre-Intervention Question 3.3',
+            yaxis_title='Question 3.3',
             legend_title='Responses',
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=False),
@@ -602,7 +602,7 @@ with tabs[1]:
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Percentage (%)',
-            yaxis_title='Pre-Intervention Question 3.6',
+            yaxis_title='Question 3.6',
             legend_title='Responses',
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=False),
@@ -1394,7 +1394,14 @@ with tabs[3]:
         col2_1_1, col2_1_2 = st.columns((1,1))
         with col2_1_1:
             important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
-    
+
+            disciplines = important_skills_df['Discipline'].unique()
+            selected_discipline = st.selectbox('Select Discipline', disciplines)
+
+            # Filtered dataframe
+            important__skills_df = important_skills_df[important_skills_df['Discipline'] == selected_discipline]
+
+
             st.markdown("**Skill type students deemed important for their first job**")
             # Calculate the distribution of skill types
             skill_distribution = important_skills_df['Classification'].value_counts().reset_index()
