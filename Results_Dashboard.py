@@ -230,7 +230,7 @@ with tabs[1]:
             yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed', tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
             font = font_settings,
             margin=dict(l=20, r=20, t=20, b=20)
             )
