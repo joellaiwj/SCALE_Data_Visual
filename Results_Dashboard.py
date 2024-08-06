@@ -1360,14 +1360,6 @@ with tabs[3]:
                 shape_cluster = i + 1
                 cluster_pairings_shape_to_stem[shape_cluster] = stem_cluster + 1
         
-            st.write("\nCluster pairings based on minimal distance (STEM to SHAPE):")
-            for stem_cluster, shape_cluster in cluster_pairings_stem_to_shape.items():
-                st.write(f"STEM Cluster {stem_cluster} is closest to SHAPE Cluster {shape_cluster}")
-        
-            st.write("\nCluster pairings based on minimal distance (SHAPE to STEM):")
-            for shape_cluster, stem_cluster in cluster_pairings_shape_to_stem.items():
-                st.write(f"SHAPE Cluster {shape_cluster} is closest to STEM Cluster {stem_cluster}")
-        
             # Perform Mann-Whitney U test on all records in the cluster pairings (STEM to SHAPE)
             st.write("\nMann-Whitney U Test Results for Cluster Pairings (STEM to SHAPE):")
             mannwhitney_results_stem_to_shape = {}
