@@ -1341,14 +1341,6 @@ with tabs[3]:
             nearest_clusters_stem_to_shape = np.argmin(distances_stem_to_shape, axis=1)
             nearest_clusters_shape_to_stem = np.argmin(distances_shape_to_stem, axis=1)
         
-            st.write("\nNearest SHAPE cluster for each STEM cluster:")
-            for i, shape_cluster in enumerate(nearest_clusters_stem_to_shape):
-                st.write(f"STEM Cluster {i + 1} -> SHAPE Cluster {shape_cluster + 1}")
-        
-            st.write("\nNearest STEM cluster for each SHAPE cluster:")
-            for i, stem_cluster in enumerate(nearest_clusters_shape_to_stem):
-                st.write(f"SHAPE Cluster {i + 1} -> STEM Cluster {stem_cluster + 1}")
-        
             # Mapping the clusters with minimal distance
             cluster_pairings_stem_to_shape = {}
             for i, shape_cluster in enumerate(nearest_clusters_stem_to_shape):
