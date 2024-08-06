@@ -1391,13 +1391,14 @@ with tabs[3]:
     col2_1, col2_2 = st.columns((3,1))
     with col2_1:
         st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for the following two questions using KNN:")
-        col2_1_1, col2_1_2 = st.columns((1,1))
+        
         important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
         gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
 
         disciplines = ['All'] + important_skills_df['Discipline'].unique().tolist()
         selected_discipline = st.selectbox('Select Discipline', disciplines)
-        
+
+        col2_1_1, col2_1_2 = st.columns((1,1))
         with col2_1_1:
             # Filtered dataframe
             if selected_discipline == 'All':
