@@ -1374,7 +1374,7 @@ with tabs[3]:
                     st.write(f"  - Effect size (r): {effect_size:.4f}")
                 else:
                     count += 1
-                    #st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
+                    st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
                     #st.write(f"  - U statistic: {stat:.4f}")
                     #st.write(f"  - P-value: {p_value:.4f}")
                     #st.write(f"  - Effect size (r): {effect_size:.4f}")
