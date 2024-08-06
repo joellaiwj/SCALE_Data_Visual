@@ -1392,15 +1392,18 @@ with tabs[3]:
     with col2_1:
         st.markdown("This section show the results when classifying the type of skill (Soft, Functional, Domain, Requirement) for the following two questions using KNN:")
         col2_1_1, col2_1_2 = st.columns((1,1))
+        important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
+        gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
+
+        disciplines = ['All'] + important_skills_df['Discipline'].unique().tolist()
+        selected_discipline = st.selectbox('Select Discipline', disciplines)
+        
         with col2_1_1:
-            important_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Pre")
-
-            disciplines = important_skills_df['Discipline'].unique()
-            selected_discipline = st.selectbox('Select Discipline', disciplines)
-
             # Filtered dataframe
-            important__skills_df = important_skills_df[important_skills_df['Discipline'] == selected_discipline]
-
+            if selected_discipline == 'All':
+                important_skills_df = important_skills_df
+            else:
+                important_skills_df = important_skills_df[important_skills_df['Discipline'] == selected_discipline]
 
             st.markdown("**Skill type students deemed important for their first job**")
             # Calculate the distribution of skill types
@@ -1414,8 +1417,12 @@ with tabs[3]:
             st.plotly_chart(fig)
 
         with col2_1_2:
-            gap_skills_df = pd.read_excel('Skill_Classification.xlsx', sheet_name="Post")
-    
+            # Filtered dataframe
+            if selected_discipline == 'All':
+                gap_skills_df = gap_skills_df
+            else:
+                gap_skills_df = gap_skills_df[gap_skills_df['Discipline'] == selected_discipline]
+            
             st.markdown("**Skill type students identify as skill gap**")
             # Calculate the distribution of skill types
             skill_distribution = gap_skills_df['Classification'].value_counts().reset_index()
