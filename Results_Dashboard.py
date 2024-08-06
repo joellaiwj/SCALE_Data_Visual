@@ -1351,8 +1351,9 @@ with tabs[3]:
             for i, stem_cluster in enumerate(nearest_clusters_shape_to_stem):
                 shape_cluster = i + 1
                 cluster_pairings_shape_to_stem[shape_cluster] = stem_cluster + 1
-        
-            # Perform Mann-Whitney U test on all records in the cluster pairings (STEM to SHAPE)
+    
+        with col1_2_3:    
+           # Perform Mann-Whitney U test on all records in the cluster pairings (STEM to SHAPE)
             st.write("\nMann-Whitney U Test Results for Cluster Pairings (STEM to SHAPE):")
             mannwhitney_results_stem_to_shape = {}
             for stem_cluster, shape_cluster in cluster_pairings_stem_to_shape.items():
@@ -1378,10 +1379,11 @@ with tabs[3]:
             for clusters, result in mannwhitney_results_stem_to_shape.items():
                 stem_cluster, shape_cluster = clusters
                 stat, p_value, effect_size = result
-                st.write(f"STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:")
-                st.write(f"  - U statistic: {stat:.4f}")
-                st.write(f"  - P-value: {p_value:.4f}")
-                st.write(f"  - Effect size (r): {effect_size:.4f}")
+                if p_value <= 0.05:
+                    st.write(f"STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:")
+                    st.write(f"  - U statistic: {stat:.4f}")
+                    st.write(f"  - P-value: {p_value:.4f}")
+                    st.write(f"  - Effect size (r): {effect_size:.4f}")
         
             # Perform Mann-Whitney U test on all records in the cluster pairings (SHAPE to STEM)
             st.write("\nMann-Whitney U Test Results for Cluster Pairings (SHAPE to STEM):")
@@ -1409,57 +1411,12 @@ with tabs[3]:
             for clusters, result in mannwhitney_results_shape_to_stem.items():
                 shape_cluster, stem_cluster = clusters
                 stat, p_value, effect_size = result
-                st.write(f"SHAPE Cluster {shape_cluster} vs STEM Cluster {stem_cluster}:")
-                st.write(f"  - U statistic: {stat:.4f}")
-                st.write(f"  - P-value: {p_value:.4f}")
-                st.write(f"  - Effect size (r): {effect_size:.4f}")
-    
-        with col1_2_3:    
-            # Mapping the clusters with minimal distance
-            cluster_pairings = {}
-            for i, shape_cluster in enumerate(nearest_clusters):
-                stem_cluster = i + 1
-                cluster_pairings[stem_cluster] = shape_cluster + 1
-            
-            # Perform Mann-Whitney U test on all records in the cluster pairings
-            mannwhitney_results = {}
-            for stem_cluster, shape_cluster in cluster_pairings.items():
-                stem_cluster_data = stem_data[stem_cluster_members[stem_cluster]]
-                shape_cluster_data = shape_data[shape_cluster_members[shape_cluster]]
-        
-                # Flatten the data for Mann-Whitney U test
-                stem_values = stem_cluster_data.values.flatten()
-                shape_values = shape_cluster_data.values.flatten()
-        
-                # Perform the Mann-Whitney U test
-                stat, p_value = mannwhitneyu(stem_values, shape_values, alternative='two-sided')
-                
-                # Calculate the effect size
-                n1 = len(stem_values)
-                n2 = len(shape_values)
-                N = n1 + n2
-                z = norm.ppf(p_value / 2) if p_value != 0 else 0  # Convert p-value to Z-score
-                r = z / np.sqrt(N)  # Effect size
-                
-                mannwhitney_results[(stem_cluster, shape_cluster)] = (stat, p_value, r)
-            count = 0
-            for clusters, result in mannwhitney_results.items():
-                stem_cluster, shape_cluster = clusters
-                stat, p_value, effect_size = result
-                
                 if p_value <=0.05:
-                    st.markdown(f"**:red[STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:]**")
+                    st.write(f"SHAPE Cluster {shape_cluster} vs STEM Cluster {stem_cluster}:")
                     st.write(f"  - U statistic: {stat:.4f}")
                     st.write(f"  - P-value: {p_value:.4f}")
                     st.write(f"  - Effect size (r): {effect_size:.4f}")
-                else:
-                    count += 1
-                    st.markdown(f"**STEM Cluster {stem_cluster} vs SHAPE Cluster {shape_cluster}:**")
-                    #st.write(f"  - U statistic: {stat:.4f}")
-                    #st.write(f"  - P-value: {p_value:.4f}")
-                    #st.write(f"  - Effect size (r): {effect_size:.4f}")
-            if count == k:
-                st.markdown(f"**:red[There are no cluster pairings that are statistically distinguishable.]**")
+                    
     st.subheader(":blue[Classification Analysis of Skills Students' Deem Important for their Job of Choice]")
 
     # Define color mapping for the classifications
