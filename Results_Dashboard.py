@@ -21,8 +21,10 @@ font_settings = dict(
     size=20
 )
 
-# Calculate the total height based on the number of questions
+# Font and Figure Settings
 bar_height = 50
+text_size1 = 20
+text_size2 = 24
 
 # Function to extract abbreviation from text in brackets
 def extract_abbreviation(text):
@@ -224,11 +226,11 @@ with tabs[1]:
             xaxis_title='Percentage (%)',
             yaxis_title='Question 2.1',
             legend_title='Responses',
-            xaxis=dict(showgrid=False),
+            xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             yaxis=dict(showgrid=False),
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed'),
+            legend=dict(traceorder='reversed', tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             font = font_settings,
             margin=dict(l=20, r=20, t=20, b=20)
             )
