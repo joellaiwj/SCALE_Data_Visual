@@ -200,7 +200,7 @@ with tabs[1]:
     frequency_df_pre_4 = pd.DataFrame(frequency_data_4)
     hover_df_pre_4 = pd.DataFrame(hover_data_4)
     total_height = bar_height * len(frequency_df_pre_4)
-    total_height_with_padding = total_height + bar_height * (len(frequency_df_pre_4) - 1)
+    total_height_with_padding = bar_height * (len(frequency_df_pre_4) - 1)
     
     fig_diverging = go.Figure()
     
@@ -216,19 +216,6 @@ with tabs[1]:
             text=hover_df_pre_4[label],
             hovertemplate='%{text} responses'
         ))
-    
-    fig_diverging.add_shape(
-        type='line',
-        x0=50,
-        y0=-0.5,
-        x1=50,
-        y1=len(frequency_df_pre_4['Question']) - 0.5,
-        line=dict(
-            color='rgba(0, 0, 0, 0.5)',
-            width=2,
-            dash='dash',
-        ),
-    )
     
     # Add annotations for each question
     for i, question in enumerate(frequency_df_pre_4['Question']):
