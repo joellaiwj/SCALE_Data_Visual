@@ -97,7 +97,7 @@ with tabs[0]:
         post_N = len(df_post)
         st.subheader(f":blue[N={post_N}]" )
     st.dataframe(df_post)
-
+    
 with tabs[1]:
     st.subheader("Filter by Discipline or College:")
     # Create a unique list of colleges and disciplines for the selectbox
@@ -310,7 +310,7 @@ with tabs[1]:
         for i, question in enumerate(frequency_df_pre_4['Question']):
             fig_diverging.add_annotation(
                 x=50,  # X position of the annotation
-                y=i,   # Y position of the annotation (index of the question)
+                y=i+0.5,   # Y position of the annotation (index of the question)
                 text=actual_statements[i],  # The actual statement text
                 showarrow=False,  # Hide the arrow
                 xanchor='center',  # Anchor the text to the center
@@ -334,7 +334,8 @@ with tabs[1]:
         
         st.plotly_chart(fig_diverging, use_container_width=True)
 
-    
+        
+        
     with col2_2:
         # List of specific columns to be plotted
         Question_4_Description = [
@@ -978,7 +979,7 @@ with tabs[2]:
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
-    
+        
     with col1_3:
         st.markdown("I had/have")
         # List of specific columns to be plotted
