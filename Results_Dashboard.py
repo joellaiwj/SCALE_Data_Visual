@@ -256,7 +256,7 @@ with tabs[1]:
             orientation='h',  # Horizontal legend
             x=0.5,
             xanchor='center',
-            y=-0.1,  # Position below the chart
+            y=-0.15,  # Position below the chart
             yanchor='top'
         ),
         font=font_settings,
