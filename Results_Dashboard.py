@@ -503,7 +503,7 @@ with tabs[1]:
         ))
     
     
-   fig_diverging.add_shape(
+    fig_diverging.add_shape(
         type='line',
         x0=50,
         y0=-0.5,
@@ -518,16 +518,16 @@ with tabs[1]:
     
     # Add annotations for each question
     for i, question in enumerate(frequency_df_pre_11['Question']):
-        fig_diverging.add_annotation(
-            x=50,  # X position of the annotation
-            y=i+0.25,   # Y position of the annotation (index of the question)
-            text=Question_11_statements[i],  # The actual statement text
-            showarrow=False,  # Hide the arrow
-            xanchor='center',  # Anchor the text to the center
-            yanchor='bottom',  # Anchor the text to the bottom
-            font=dict(size=text_size1),  # Adjust font size as needed
-            bgcolor='white'
-        )
+    fig_diverging.add_annotation(
+        x=50,  # X position of the annotation
+        y=i+0.25,   # Y position of the annotation (index of the question)
+        text=Question_11_statements[i],  # The actual statement text
+        showarrow=False,  # Hide the arrow
+        xanchor='center',  # Anchor the text to the center
+        yanchor='bottom',  # Anchor the text to the bottom
+        font=dict(size=text_size1),  # Adjust font size as needed
+        bgcolor='white'
+    )
     
     fig_diverging.update_layout(
         barmode='relative',
@@ -537,14 +537,14 @@ with tabs[1]:
         yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
         #width=1100,
         height=total_height_with_padding,
-        legend=dict(
-            font=dict(size=text_size1),
-            orientation='h',  # Horizontal legend
-            x=0.5,
-            xanchor='center',
-            y=-0.12,  # Position below the chart
-            yanchor='top'
-        ),
+            legend=dict(
+                font=dict(size=text_size1),
+                orientation='h',  # Horizontal legend
+                x=0.5,
+                xanchor='center',
+                y=-0.12,  # Position below the chart
+                yanchor='top'
+            ),
         font=font_settings,
         margin=dict(l=20, r=20, t=20, b=20),
         bargap=0.5
