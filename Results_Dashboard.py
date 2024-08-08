@@ -484,7 +484,7 @@ with tabs[1]:
     frequency_df_pre_11 = pd.DataFrame(frequency_data_11)
     hover_df_pre_11 = pd.DataFrame(hover_data_11)
     total_height = bar_height * len(frequency_df_pre_11)
-    total_height_with_padding = (total_height/3) + bar_height * (len(frequency_df_pre_11) - 1)
+    total_height_with_padding = (total_height/2) + bar_height * (len(frequency_df_pre_11) - 1)
     
     # Create the diverging bar chart
     fig_diverging = go.Figure()
