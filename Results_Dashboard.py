@@ -150,8 +150,12 @@ with tabs[1]:
     
     st.header(":green[Response to Survey Questions]")
 
+    # Your existing code...
+    st.subheader(":blue[Non-Core Course Selection:]")
+    st.markdown("This question is about the degree of importance of these factors when choosing a non-core course (MPE, BDE).")
+
     # Define your actual statements
-    actual_statements = [
+    Question_4_statements = [
         'Relevance to your major or desired career field',
         'Recommendation from a friend or peer',
         'Recommendation from a career/course advisor',
@@ -167,10 +171,6 @@ with tabs[1]:
         'Mode of delivery (in-person, online, hybrid)',
         'Fulfilment for minor or secondary academic discipline'
         ]
-    
-    # Your existing code...
-    st.subheader(":blue[Non-Core Course Selection:]")
-    st.markdown("This question is about the degree of importance of these factors when choosing a non-core course (MPE, BDE).")
     
     Question_4 = [
         '2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
@@ -235,7 +235,7 @@ with tabs[1]:
         fig_diverging.add_annotation(
             x=50,  # X position of the annotation
             y=i+0.25,   # Y position of the annotation (index of the question)
-            text=actual_statements[i],  # The actual statement text
+            text=Question_4_statements[i],  # The actual statement text
             showarrow=False,  # Hide the arrow
             xanchor='center',  # Anchor the text to the center
             yanchor='bottom',  # Anchor the text to the bottom
@@ -266,7 +266,7 @@ with tabs[1]:
     
     st.plotly_chart(fig_diverging, use_container_width=True)
     
-    col3_1, col3_2, col3_3 = st.columns((1,3,1))
+    col3_1, col3_2 = st.columns((1,6))
     with col3_1:
         # Toggle for showing or hiding the chart
         show_chart = st.checkbox("Show Dedrogram Heatmap")
@@ -431,112 +431,126 @@ with tabs[1]:
                 plt.axis("off")
                 st.pyplot(plt,use_container_width=True)
     
-    col6_1, col6_2 = st.columns((2,1))
-    
-    with col6_1:
-        st.markdown("From the skills deemed important for your first job, please rate your agreement with the following statements:")
 
-        # List of specific columns to be plotted
-        Question_11 = [
-        '3.3 (Q11_A_10)', '3.3 (Q11_A_9)', '3.3 (Q11_A_8)', '3.3 (Q11_A_7)',
-        '3.3 (Q11_A_6)', '3.3 (Q11_A_5)', '3.3 (Q11_A_4)', '3.3 (Q11_A_3)',
-        '3.3 (Q11_A_2)', '3.3 (Q11_A_1)']
-        
-        # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
-        new_labels = [chr(65 + i) for i in range(len(Question_11))]
-        column_label_mapping = dict(zip(Question_11, new_labels[::-1]))
-        
-        # Convert numerical responses to Likert scale labels
-        likert_labels = {1: 'Strongly disagree', 2: 'Disagree', 3: 'Neutral', 4: 'Agree', 5: 'Strongly agree'}
-        
-        # Initialize a DataFrame to store the frequency counts
-        frequency_data_11 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
-        hover_data_11 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
-        
-        # Count the frequency of each Likert response for each question and convert to percentage
-        for question in Question_11:
-            frequency_data_11['Question'].append(column_label_mapping[question])
-            hover_data_11['Question'].append(column_label_mapping[question])
-            counts = df_pre[question].value_counts().sort_index()
-            for key, label in likert_labels.items():
-                count = counts.get(key, 0)
-                percentage = (count / total_entries) * 100
-                frequency_data_11[label].append(percentage)
-                hover_data_11[label].append(count)
-        
-        # Create the frequency DataFrame
-        frequency_df_pre_11 = pd.DataFrame(frequency_data_11)
-        hover_df_pre_11 = pd.DataFrame(hover_data_11)
-        total_height = bar_height * len(frequency_df_pre_11)
-        
-        # Create the diverging bar chart
-        fig_diverging = go.Figure()
-        
-        colors = ['#de425b', '#f3babc', '#f1f1f1', '#aecdc2', '#488f31']
-        
-        for label, color in zip(likert_labels.values(), colors):
-            fig_diverging.add_trace(go.Bar(
-                y=frequency_df_pre_11['Question'],
-                x=frequency_df_pre_11[label],
-                name=label,
-                orientation='h',
-                marker=dict(color=color),
-                text=hover_df_pre_11[label],
-                hovertemplate='%{text} responses'
-            ))
-        
-        
-        # Add a vertical dashed line at 50%
-        fig_diverging.add_shape(
-            type='line',
-            x0=50,
-            y0=-0.5,
-            x1=50,
-            y1=len(frequency_df_pre_11['Question']) - 0.5,
-            line=dict(
-                color='Black',
-                width=2,
-                dash='dash',
-            ),
+    st.markdown("From the skills deemed important for your first job, please rate your agreement with the following statements:")
+
+    # Define your actual statements
+    Question_11_statements = [
+        'I have a good idea of the skills needed in my desired industry.',
+        'I have developed these skills through the core and major prescribed elective (MPE) courses.',
+        'I have developed these skills through the broadening and deeping elective (BDE) courses.',
+        'I have developed these skills through the interdisciplinary collaborative core (ICC) courses.',
+        'I have developed these skills through the university co-curricular activities.',
+        'I have developed these skills outside the university.',
+        'I feel ready to enter the job market (my desired industry) with the skills I currently possess.',
+        'I believe I need to further develop the skills I listed to increase employability in my desired industry.',
+        'I am aware of the skills I lack that are important in my desired industry.',
+        'I have a clear plan to acquire or develop the skills I currently lack.'
+        ]
+    
+    fig_diverging = go.Figure()
+    
+    colors = ['#de425b', '#f3babc', '#aecdc2', '#488f31']
+    
+    # List of specific columns to be plotted
+    Question_11 = [
+    '3.3 (Q11_A_10)', '3.3 (Q11_A_9)', '3.3 (Q11_A_8)', '3.3 (Q11_A_7)',
+    '3.3 (Q11_A_6)', '3.3 (Q11_A_5)', '3.3 (Q11_A_4)', '3.3 (Q11_A_3)',
+    '3.3 (Q11_A_2)', '3.3 (Q11_A_1)']
+    
+    # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
+    new_labels = [chr(65 + i) for i in range(len(Question_11))]
+    column_label_mapping = dict(zip(Question_11, new_labels[::-1]))
+    
+    # Convert numerical responses to Likert scale labels
+    likert_labels = {1: 'Strongly disagree', 2: 'Disagree', 3: 'Neutral', 4: 'Agree', 5: 'Strongly agree'}
+    
+    # Initialize a DataFrame to store the frequency counts
+    frequency_data_11 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
+    hover_data_11 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
+    
+    # Count the frequency of each Likert response for each question and convert to percentage
+    for question in Question_11:
+        frequency_data_11['Question'].append(column_label_mapping[question])
+        hover_data_11['Question'].append(column_label_mapping[question])
+        counts = df_pre[question].value_counts().sort_index()
+        for key, label in likert_labels.items():
+            count = counts.get(key, 0)
+            percentage = (count / total_entries) * 100
+            frequency_data_11[label].append(percentage)
+            hover_data_11[label].append(count)
+    
+    # Create the frequency DataFrame
+    frequency_df_pre_11 = pd.DataFrame(frequency_data_11)
+    hover_df_pre_11 = pd.DataFrame(hover_data_11)
+    total_height = bar_height * len(frequency_df_pre_11)
+    total_height_with_padding = (total_height/3) + bar_height * (len(frequency_df_pre_11) - 1)
+    
+    # Create the diverging bar chart
+    fig_diverging = go.Figure()
+    
+    colors = ['#de425b', '#f3babc', '#f1f1f1', '#aecdc2', '#488f31']
+    
+    for label, color in zip(likert_labels.values(), colors):
+        fig_diverging.add_trace(go.Bar(
+            y=frequency_df_pre_11['Question'],
+            x=frequency_df_pre_11[label],
+            name=label,
+            orientation='h',
+            marker=dict(color=color),
+            text=hover_df_pre_11[label],
+            hovertemplate='%{text} responses'
+        ))
+    
+    
+   fig_diverging.add_shape(
+        type='line',
+        x0=50,
+        y0=-0.5,
+        x1=50,
+        y1=len(frequency_df_pre_11['Question']) - 0.5,
+        line=dict(
+            color='rgba(0, 0, 0, 0.5)',  # RGBA color with alpha for opacity
+            width=2,
+            dash='dot'
+        ),
+    )
+    
+    # Add annotations for each question
+    for i, question in enumerate(frequency_df_pre_11['Question']):
+        fig_diverging.add_annotation(
+            x=50,  # X position of the annotation
+            y=i+0.25,   # Y position of the annotation (index of the question)
+            text=Question_11_statements[i],  # The actual statement text
+            showarrow=False,  # Hide the arrow
+            xanchor='center',  # Anchor the text to the center
+            yanchor='bottom',  # Anchor the text to the bottom
+            font=dict(size=text_size1),  # Adjust font size as needed
+            bgcolor='white'
         )
-        
-        fig_diverging.update_layout(
-            barmode='relative',
-            xaxis_title='Percentage (%)',
-            yaxis_title='Question 3.3',
-            legend_title='Responses',
-            xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
-            yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
-            width=1100,  # Set the width of the figure
-            height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
-            font = font_settings,
-            margin=dict(l=20, r=20, t=20, b=20)
-            )
-        
-        st.plotly_chart(fig_diverging,use_container_width=True)
-        
-    with col6_2:
-        # List of specific columns to be plotted
-        Question_11_Description = [
-            'I have a good idea of the skills needed in my desired industry.',
-            'I have developed these skills through the core and major prescribed elective (MPE) courses.',
-            'I have developed these skills through the broadening and deeping elective (BDE) courses.',
-            'I have developed these skills through the interdisciplinary collaborative core (ICC) courses.',
-            'I have developed these skills through the university co-curricular activities.',
-            'I have developed these skills outside the university.',
-            'I feel ready to enter the job market (my desired industry) with the skills I currently possess.',
-            'I believe I need to further develop the skills I listed to increase employability in my desired industry.',
-            'I am aware of the skills I lack that are important in my desired industry.',
-            'I have a clear plan to acquire or develop the skills I currently lack.'
-            ]
-        
-        mapping_table = pd.DataFrame({
-        'Label': new_labels,
-        'Survey Question': Question_11_Description
-        })
-        
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
+    
+    fig_diverging.update_layout(
+        barmode='relative',
+        xaxis_title='Percentage (%)',
+        yaxis_title='Question 3.3',
+        xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+        yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+        #width=1100,
+        height=total_height_with_padding,
+        legend=dict(
+            font=dict(size=text_size1),
+            orientation='h',  # Horizontal legend
+            x=0.5,
+            xanchor='center',
+            y=-0.12,  # Position below the chart
+            yanchor='top'
+        ),
+        font=font_settings,
+        margin=dict(l=20, r=20, t=20, b=20),
+        bargap=0.5
+    )
+    
+    st.plotly_chart(fig_diverging, use_container_width=True)
         
     col7_1, col7_2 = st.columns((2,1))
     
