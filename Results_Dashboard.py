@@ -500,7 +500,8 @@ with tabs[1]:
             marker=dict(color=color),
             text=hover_df_pre_11[label],
             hovertemplate='%{text} responses'
-        ))
+        )
+    )
     
     
     fig_diverging.add_shape(
@@ -518,16 +519,16 @@ with tabs[1]:
     
     # Add annotations for each question
     for i, question in enumerate(frequency_df_pre_11['Question']):
-    fig_diverging.add_annotation(
-        x=50,  # X position of the annotation
-        y=i+0.25,   # Y position of the annotation (index of the question)
-        text=Question_11_statements[i],  # The actual statement text
-        showarrow=False,  # Hide the arrow
-        xanchor='center',  # Anchor the text to the center
-        yanchor='bottom',  # Anchor the text to the bottom
-        font=dict(size=text_size1),  # Adjust font size as needed
-        bgcolor='white'
-    )
+        fig_diverging.add_annotation(
+            x=50,  # X position of the annotation
+            y=i+0.25,   # Y position of the annotation (index of the question)
+            text=Question_11_statements[i],  # The actual statement text
+            showarrow=False,  # Hide the arrow
+            xanchor='center',  # Anchor the text to the center
+            yanchor='bottom',  # Anchor the text to the bottom
+            font=dict(size=text_size1),  # Adjust font size as needed
+            bgcolor='white'
+        )
     
     fig_diverging.update_layout(
         barmode='relative',
