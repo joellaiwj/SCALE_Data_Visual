@@ -1243,10 +1243,10 @@ with tabs[3]:
 
         col1_1_1, col1_1_2 = st.columns((1,1))
         with col1_1_1:
-            k = st.slider('Select number of STEM discipline clusters', 1, 14, 3, key = "stem_cluster_num")
+            k = st.slider('Select number of STEM discipline clusters', 1, 14, 4, key = "stem_cluster_num")
             k = k-1
         with col1_1_2:
-            l = st.slider('Select number of SHAPE discipline clusters', 1, 14, 3, key = "shape_cluster_num")
+            l = st.slider('Select number of SHAPE discipline clusters', 1, 14, 5, key = "shape_cluster_num")
             l = l-1
         
         # Plotting dendrograms
@@ -1260,7 +1260,7 @@ with tabs[3]:
             color_threshold=stem_linkage[-k, 2]  # Color the top k+1 clusters
         )
         axes[0].set_title('STEM Discipline', fontsize=24)
-        axes[0].tick_params(axis='y', which='both', left=False, labelleft=False)
+        axes[0].tick_params(axis='y', which='both', left=False, labelleft=False, fontsize=20)
         
         # Dendrogram for SHAPE group questions
         dendrogram(
@@ -1270,7 +1270,7 @@ with tabs[3]:
             color_threshold=shape_linkage[-l, 2]  # Color the top k+1 clusters
         )
         axes[1].set_title('SHAPE Discipline', fontsize=24)
-        axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
+        axes[1].tick_params(axis='y', which='both', left=False, labelleft=False, fontsize=20)
     
         st.pyplot(fig,use_container_width=True)
 
