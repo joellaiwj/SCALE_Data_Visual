@@ -226,7 +226,7 @@ with tabs[1]:
         line=dict(
             color='rgba(0, 0, 0, 0.5)',  # RGBA color with alpha for opacity
             width=2,
-            dash='dash'
+            dash='dot'
         ),
     )
     
