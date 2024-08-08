@@ -150,9 +150,6 @@ with tabs[1]:
     
     st.header(":green[Response to Survey Questions]")
 
-    st.subheader(":blue[Non-Core Course Selection:]")
-    st.markdown("This question is about the degree of importance of these factors when choosing a non-core course (MPE, BDE).")
-
     # Define your actual statements
     actual_statements = [
         'Relevance to your major or desired career field',
@@ -203,7 +200,7 @@ with tabs[1]:
     frequency_df_pre_4 = pd.DataFrame(frequency_data_4)
     hover_df_pre_4 = pd.DataFrame(hover_data_4)
     total_height = bar_height * len(frequency_df_pre_4)
-    total_height_with_padding = total_height + bar_height * (len(frequency_df_pre_4) - 1)
+    total_height_with_padding = bar_height * (len(frequency_df_pre_4) - 1)
     
     fig_diverging = go.Figure()
     
@@ -230,6 +227,7 @@ with tabs[1]:
             color='Black',
             width=2,
             dash='dash',
+            opacity=0.5
         ),
     )
     
