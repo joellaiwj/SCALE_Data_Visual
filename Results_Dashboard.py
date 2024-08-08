@@ -18,12 +18,12 @@ from scipy.spatial.distance import cdist
 # Font size settings
 font_settings = dict(
     family="Arial, sans-serif",
-    size=20
+    size=18
 )
 
 # Font and Figure Settings
 bar_height = 50
-text_size1 = 18
+text_size1 = 20
 text_size2 = 24
 
 # Function to extract abbreviation from text in brackets
@@ -236,7 +236,7 @@ with tabs[1]:
         legend_title='Responses',
         xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
         yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
-        width=1100,
+        #width=1100,
         height=total_height_with_padding,
         legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
         font=font_settings,
