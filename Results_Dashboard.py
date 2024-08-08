@@ -238,12 +238,11 @@ with tabs[1]:
         #width=1100,
         height=total_height_with_padding,
         legend=dict(
-            traceorder='reversed',
             font=dict(size=text_size1),
             orientation='h',  # Horizontal legend
             x=0.5,
             xanchor='center',
-            y=-0.2,  # Position below the chart
+            y=0.0,  # Position below the chart
             yanchor='top'
         ),
         font=font_settings,
