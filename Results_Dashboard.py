@@ -277,6 +277,7 @@ with tabs[1]:
         frequency_df_pre_4 = pd.DataFrame(frequency_data_4)
         hover_df_pre_4 = pd.DataFrame(hover_data_4)
         total_height = bar_height * len(frequency_df_pre_4)
+        total_height_with_padding = total_height + bar_height * (len(frequency_df_pre_4) - 1)
         
         fig_diverging = go.Figure()
         
@@ -326,7 +327,7 @@ with tabs[1]:
             xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             width=1100,
-            height=total_height,
+            height=total_height_with_padding,
             legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
             font=font_settings,
             margin=dict(l=20, r=20, t=20, b=20),
