@@ -227,7 +227,7 @@ with tabs[1]:
             color='Black',
             width=2,
             dash='dash',
-            opacity=0.5
+            opacity=0.5,
         ),
     )
     
