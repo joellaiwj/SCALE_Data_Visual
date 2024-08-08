@@ -200,7 +200,7 @@ with tabs[1]:
     frequency_df_pre_4 = pd.DataFrame(frequency_data_4)
     hover_df_pre_4 = pd.DataFrame(hover_data_4)
     total_height = bar_height * len(frequency_df_pre_4)
-    total_height_with_padding = (total_height/2.5) + bar_height * (len(frequency_df_pre_4) - 1)
+    total_height_with_padding = (total_height/3) + bar_height * (len(frequency_df_pre_4) - 1)
     
     fig_diverging = go.Figure()
     
@@ -256,7 +256,7 @@ with tabs[1]:
             orientation='h',  # Horizontal legend
             x=0.5,
             xanchor='center',
-            y=-0.15,  # Position below the chart
+            y=-0.125,  # Position below the chart
             yanchor='top'
         ),
         font=font_settings,
