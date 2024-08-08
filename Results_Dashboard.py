@@ -216,6 +216,19 @@ with tabs[1]:
             text=hover_df_pre_4[label],
             hovertemplate='%{text} responses'
         ))
+
+    fig_diverging.add_shape(
+        type='line',
+        x0=50,
+        y0=-0.5,
+        x1=50,
+        y1=len(frequency_df_pre_4['Question']) - 0.5,
+        line=dict(
+            color='rgba(0, 0, 0, 0.5)',  # RGBA color with alpha for opacity
+            width=2,
+            dash='dash'
+        ),
+    )
     
     # Add annotations for each question
     for i, question in enumerate(frequency_df_pre_4['Question']):
@@ -226,7 +239,8 @@ with tabs[1]:
             showarrow=False,  # Hide the arrow
             xanchor='center',  # Anchor the text to the center
             yanchor='bottom',  # Anchor the text to the bottom
-            font=dict(size=text_size1)  # Adjust font size as needed
+            font=dict(size=text_size1),  # Adjust font size as needed
+            bgcolor='white'
         )
     
     fig_diverging.update_layout(
