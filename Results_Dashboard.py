@@ -260,7 +260,7 @@ with tabs[1]:
             yanchor='top'
         ),
         font=font_settings,
-        margin=dict(l=20, r=20, t=20, b=20),
+        margin=dict(l=20, r=10, t=20, b=20),
         bargap=0.5
     )
     
