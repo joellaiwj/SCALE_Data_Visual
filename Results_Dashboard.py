@@ -311,7 +311,7 @@ with tabs[1]:
         for i, question in enumerate(frequency_df_pre_4['Question']):
             fig_diverging.add_annotation(
                 x=50,  # X position of the annotation
-                y=i+0.5,   # Y position of the annotation (index of the question)
+                y=i+0.25,   # Y position of the annotation (index of the question)
                 text=actual_statements[i],  # The actual statement text
                 showarrow=False,  # Hide the arrow
                 xanchor='center',  # Anchor the text to the center
@@ -331,7 +331,7 @@ with tabs[1]:
             legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
             font=font_settings,
             margin=dict(l=20, r=20, t=20, b=20),
-            bargap=0.15
+            bargap=0.5
         )
         
         st.plotly_chart(fig_diverging, use_container_width=True)
