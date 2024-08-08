@@ -229,6 +229,19 @@ with tabs[1]:
             dash='dot'
         ),
     )
+
+    fig_diverging.add_shape(
+        type='line',
+        x0=25,
+        y0=-0.5,
+        x1=25,
+        y1=len(frequency_df_pre_4['Question']) - 0.5,
+        line=dict(
+            color='rgba(0, 0, 0, 0.5)',  # RGBA color with alpha for opacity
+            width=2,
+            dash='dot'
+        ),
+    )
     
     # Add annotations for each question
     for i, question in enumerate(frequency_df_pre_4['Question']):
