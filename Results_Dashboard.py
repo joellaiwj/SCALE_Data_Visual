@@ -235,7 +235,7 @@ with tabs[1]:
         fig_diverging.add_annotation(
             x=50,  # X position of the annotation
             y=i+0.25,   # Y position of the annotation (index of the question)
-            text=Question_4_statements[1-i],  # The actual statement text
+            text=Question_4_statements[len(Question_4_statements)-1-i],  # The actual statement text
             showarrow=False,  # Hide the arrow
             xanchor='center',  # Anchor the text to the center
             yanchor='bottom',  # Anchor the text to the bottom
