@@ -1259,7 +1259,7 @@ with tabs[3]:
             labels=stem_data_transposed.index,
             color_threshold=stem_linkage[-k, 2]  # Color the top k+1 clusters
         )
-        axes[0].set_title('STEM Discipline')
+        axes[0].set_title('STEM Discipline', fontsize=24)
         axes[0].tick_params(axis='y', which='both', left=False, labelleft=False)
         
         # Dendrogram for SHAPE group questions
@@ -1269,7 +1269,7 @@ with tabs[3]:
             labels=shape_data_transposed.index,
             color_threshold=shape_linkage[-l, 2]  # Color the top k+1 clusters
         )
-        axes[1].set_title('SHAPE Discipline')
+        axes[1].set_title('SHAPE Discipline', fontsize=24)
         axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
     
         st.pyplot(fig,use_container_width=True)
