@@ -224,10 +224,9 @@ with tabs[1]:
         x1=50,
         y1=len(frequency_df_pre_4['Question']) - 0.5,
         line=dict(
-            color='Black',
+            color='rgba(0, 0, 0, 0.5)',
             width=2,
             dash='dash',
-            opacity=0.5,
         ),
     )
     
