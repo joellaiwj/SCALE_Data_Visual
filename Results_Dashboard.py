@@ -331,7 +331,7 @@ with tabs[1]:
             legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
             font=font_settings,
             margin=dict(l=20, r=20, t=20, b=20),
-            bargap=0.5
+            bargap=0.15
         )
         
         st.plotly_chart(fig_diverging, use_container_width=True)
