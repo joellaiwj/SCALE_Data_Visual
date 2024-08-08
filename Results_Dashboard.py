@@ -1272,7 +1272,7 @@ with tabs[3]:
         )
         axes[1].set_title('SHAPE Discipline', fontsize=24)
         axes[1].tick_params(axis='y', which='both', left=False, labelleft=False)
-        axes[0].tick_params(axis='x', labelsize=20)
+        axes[1].tick_params(axis='x', labelsize=20)
     
         st.pyplot(fig,use_container_width=True)
 
