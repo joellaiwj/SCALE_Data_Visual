@@ -236,6 +236,104 @@ with tabs[1]:
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
+
+        # Define your actual statements
+        actual_statements = [
+            'Statement for Q4_A_14', 'Statement for Q4_A_13', 'Statement for Q4_A_12', 'Statement for Q4_A_11',
+            'Statement for Q4_A_10', 'Statement for Q4_A_9', 'Statement for Q4_A_8', 'Statement for Q4_A_7',
+            'Statement for Q4_A_6', 'Statement for Q4_A_5', 'Statement for Q4_A_4', 'Statement for Q4_A_3',
+            'Statement for Q4_A_2', 'Statement for Q4_A_1'
+        ]
+        
+        # Your existing code...
+        st.subheader(":blue[Non-Core Course Selection:]")
+        st.markdown("This question is about the degree of importance of these factors when choosing a non-core course (MPE, BDE).")
+        
+        Question_4 = [
+            '2.1 (Q4_A_14)', '2.1 (Q4_A_13)', '2.1 (Q4_A_12)', '2.1 (Q4_A_11)',
+            '2.1 (Q4_A_10)', '2.1 (Q4_A_9)', '2.1 (Q4_A_8)', '2.1 (Q4_A_7)',
+            '2.1 (Q4_A_6)', '2.1 (Q4_A_5)', '2.1 (Q4_A_4)', '2.1 (Q4_A_3)',
+            '2.1 (Q4_A_2)', '2.1 (Q4_A_1)'
+        ]
+        
+        new_labels = [chr(65 + i) for i in range(len(Question_4))]
+        column_label_mapping = dict(zip(Question_4, new_labels[::-1]))
+        
+        likert_labels = {1: 'Not important at all', 2: 'Somewhat unimportant', 3: 'Somewhat important', 4: 'Very important'}
+        
+        frequency_data_4 = {'Question': [], 'Not important at all': [], 'Somewhat unimportant': [], 'Somewhat important': [], 'Very important': []}
+        hover_data_4 = {'Question': [], 'Not important at all': [], 'Somewhat unimportant': [], 'Somewhat important': [], 'Very important': []}
+        
+        for question in Question_4:
+            frequency_data_4['Question'].append(column_label_mapping[question])
+            hover_data_4['Question'].append(column_label_mapping[question])
+            counts = df_pre[question].value_counts().sort_index()
+            for key, label in likert_labels.items():
+                count = counts.get(key, 0)
+                percentage = (count / total_entries) * 100
+                frequency_data_4[label].append(percentage)
+                hover_data_4[label].append(count)
+        
+        frequency_df_pre_4 = pd.DataFrame(frequency_data_4)
+        hover_df_pre_4 = pd.DataFrame(hover_data_4)
+        total_height = bar_height * len(frequency_df_pre_4)
+        
+        fig_diverging = go.Figure()
+        
+        colors = ['#de425b', '#f3babc', '#aecdc2', '#488f31']
+        
+        for label, color in zip(likert_labels.values(), colors):
+            fig_diverging.add_trace(go.Bar(
+                y=frequency_df_pre_4['Question'],
+                x=frequency_df_pre_4[label],
+                name=label,
+                orientation='h',
+                marker=dict(color=color),
+                text=hover_df_pre_4[label],
+                hovertemplate='%{text} responses'
+            ))
+        
+        fig_diverging.add_shape(
+            type='line',
+            x0=50,
+            y0=-0.5,
+            x1=50,
+            y1=len(frequency_df_pre_4['Question']) - 0.5,
+            line=dict(
+                color='Black',
+                width=2,
+                dash='dash',
+            ),
+        )
+        
+        # Add annotations for each question
+        for i, question in enumerate(frequency_df_pre_4['Question']):
+            fig_diverging.add_annotation(
+                x=50,  # X position of the annotation
+                y=i,   # Y position of the annotation (index of the question)
+                text=actual_statements[i],  # The actual statement text
+                showarrow=False,  # Hide the arrow
+                xanchor='center',  # Anchor the text to the center
+                yanchor='bottom',  # Anchor the text to the bottom
+                font=dict(size=text_size1)  # Adjust font size as needed
+            )
+        
+        fig_diverging.update_layout(
+            barmode='relative',
+            xaxis_title='Percentage (%)',
+            yaxis_title='Question 2.1',
+            legend_title='Responses',
+            xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            width=1100,
+            height=total_height,
+            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
+            font=font_settings,
+            margin=dict(l=20, r=20, t=20, b=20)
+        )
+        
+        st.plotly_chart(fig_diverging, use_container_width=True)
+
     
     with col2_2:
         # List of specific columns to be plotted
