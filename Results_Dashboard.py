@@ -536,7 +536,7 @@ with tabs[1]:
     fig_diverging.update_layout(
         barmode='relative',
         xaxis_title='Percentage (%)',
-        yaxis_title='Question 3.3',
+        yaxis_title='Questions 3.3 & 3.6',
         xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
         yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
         #width=1100,
