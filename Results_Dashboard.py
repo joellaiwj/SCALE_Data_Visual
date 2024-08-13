@@ -457,9 +457,10 @@ with tabs[1]:
     
     # List of specific columns to be plotted
     Question_11 = [
+    '3.6 (Q13_A_3)', '3.6 (Q13_A_2)', '3.6 (Q13_A_1)',
     '3.3 (Q11_A_10)', '3.3 (Q11_A_9)', '3.3 (Q11_A_8)', '3.3 (Q11_A_7)',
     '3.3 (Q11_A_6)', '3.3 (Q11_A_5)', '3.3 (Q11_A_4)', '3.3 (Q11_A_3)',
-    '3.3 (Q11_A_2)', '3.3 (Q11_A_1)', '3.6 (Q13_A_3)', '3.6 (Q13_A_2)', '3.6 (Q13_A_1)']
+    '3.3 (Q11_A_2)', '3.3 (Q11_A_1)']
     
     # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
     new_labels = [chr(65 + i) for i in range(len(Question_11))]
