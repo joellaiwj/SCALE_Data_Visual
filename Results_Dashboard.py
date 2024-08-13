@@ -555,19 +555,6 @@ with tabs[1]:
     )
     
     st.plotly_chart(fig_diverging, use_container_width=True)
-        
-    with col7_2:
-        # List of specific columns to be plotted
-        Question_13_Description = [
-            
-            ]
-        
-        mapping_table = pd.DataFrame({
-        'Label': new_labels,
-        'Survey Question': Question_13_Description
-        })
-        
-        st.dataframe(mapping_table,height=(len(column_label_mapping)+1)*35+3,use_container_width=True,hide_index=True)
 
     col8_1, col8_2 = st.columns((2,1))
     
