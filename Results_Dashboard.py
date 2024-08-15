@@ -580,7 +580,8 @@ with tabs[1]:
                 [0, 26.28571429, 22.28571429, 16, 17.14285714, 17.14285714]
             ],
             'Score': [2.776, 2.510, 2.420, 2.294],
-            'Times Ranked': [51, 28, 34, 30]
+            'Top': [51, 28, 34, 30],
+            'Positive': [88, 67, 73, 58]
         }
         colors = ['#ffffff', '#de425b', '#f3babc', '#aecdc2', '#488f31', '#ffffff']
         
@@ -633,11 +634,13 @@ with tabs[1]:
         distribution_explain = "**Distribution:** A visual representation of how many times each choice was ranked. "
         score_explain = "**Score:** The first position gives the highest “weight” and the last position gives the lowest “weight”.\
             We calculate the total score of each choice based on these weighted values, and took the average to obtain the score."
-        ranked_explain = "**Times Ranked:** This column counts the number of times this item is ranked as the top option."
+        ranked_explain = "**Top:** This column counts the number of times this item is ranked as the top option."
+        positive_explain = "**Positive:** This column counts the number of times this item is ranked in the top 2 options."
         
         st.markdown(distribution_explain)
         st.markdown(score_explain)
         st.markdown(ranked_explain)
+        st.markdown(positive_explain)
 
 with tabs[2]:
     total_entries = len(df_post)
