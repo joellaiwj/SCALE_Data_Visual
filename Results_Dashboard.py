@@ -1545,21 +1545,6 @@ with tabs[3]:
                 hovertemplate='%{text} responses'
             ))
         
-        
-        # Add a vertical dashed line at 50%
-        fig_diverging.add_shape(
-            type='line',
-            x0=50,
-            y0=-0.5,
-            x1=50,
-            y1=len(frequency_df_post_1['Question']) - 0.5,
-            line=dict(
-                color='Black',
-                width=2,
-                dash='dash',
-            ),
-        )
-        
         fig_diverging.update_layout(
             barmode='relative',
             xaxis_title='Responses',
@@ -1623,20 +1608,6 @@ with tabs[3]:
                 hovertemplate='%{text} responses'
             ))
         
-        
-        # Add a vertical dashed line at 50%
-        fig_diverging.add_shape(
-            type='line',
-            x0=50,
-            y0=-0.5,
-            x1=50,
-            y1=len(frequency_df_post_1['Question']) - 0.5,
-            line=dict(
-                color='Black',
-                width=2,
-                dash='dash',
-            ),
-        )
         
         fig_diverging.update_layout(
             barmode='relative',
