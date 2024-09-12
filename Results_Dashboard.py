@@ -1492,3 +1492,166 @@ with tabs[3]:
             summary_table = pd.DataFrame.from_dict(results, orient='index')
             
             st.dataframe(summary_table, height=(len(Qn_Index) + 1) * 35 + 3, use_container_width=True, hide_index=False)
+
+    st.subheader(":blue[Retrospective Survey]")
+    col3_1, col3_2 = st.columns((1,1))
+    
+    with col3_1:
+        st.markdown("Based on what you now know, consider where you were :blue[**BEFORE**] using InPlace. Indicate your agreement to the following statements.")
+
+        # List of specific columns to be plotted
+        Question_1A = ['1.1.A', '1.1.B', '1.1.C', '1.1.D', '1.1.E', '1.1.F', '1.1.G', '1.1.H', '1.1.I', '1.1.J']
+        
+        # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
+        new_labels = [chr(65 + i) for i in range(len(Question_1A))]
+        column_label_mapping = dict(zip(Question_1A, new_labels[::-1]))
+        
+        # Convert numerical responses to Likert scale labels
+        likert_labels = {1: 'Strongly disagree', 2: 'Disagree', 3: 'Neutral', 4: 'Agree', 5: 'Strongly agree'}
+        
+        # Initialize a DataFrame to store the frequency counts
+        frequency_data_1 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
+        hover_data_1 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
+        
+        # Count the frequency of each Likert response for each question and convert to percentage
+        for question in Question_1A:
+            frequency_data_1['Question'].append(column_label_mapping[question])
+            hover_data_1['Question'].append(column_label_mapping[question])
+            counts = df_post[question].value_counts().sort_index()
+            for key, label in likert_labels.items():
+                count = counts.get(key, 0)
+                percentage = (count / total_entries) * 100
+                frequency_data_1[label].append(percentage)
+                hover_data_1[label].append(count)
+        
+        # Create the frequency DataFrame
+        frequency_df_post_1 = pd.DataFrame(frequency_data_1)
+        hover_df_post_1 = pd.DataFrame(hover_data_1)
+        total_height = bar_height * len(frequency_df_post_1)
+        
+        # Create the diverging bar chart
+        fig_diverging = go.Figure()
+        
+        colors = ['#de425b', '#f3babc', '#f1f1f1', '#aecdc2', '#488f31']
+        
+        for label, color in zip(likert_labels.values(), colors):
+            fig_diverging.add_trace(go.Bar(
+                y=frequency_df_post_1['Question'],
+                x=frequency_df_post_1[label],
+                name=label,
+                orientation='h',
+                marker=dict(color=color),
+                text=hover_df_post_1[label],
+                hovertemplate='%{text} responses'
+            ))
+        
+        
+        # Add a vertical dashed line at 50%
+        fig_diverging.add_shape(
+            type='line',
+            x0=50,
+            y0=-0.5,
+            x1=50,
+            y1=len(frequency_df_post_1['Question']) - 0.5,
+            line=dict(
+                color='Black',
+                width=2,
+                dash='dash',
+            ),
+        )
+        
+        fig_diverging.update_layout(
+            barmode='relative',
+            xaxis_title='Percentage (%)',
+            yaxis_title='Post-Intervention Question 1.1.A',
+            legend_title='Responses',
+            xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            width=1100,  # Set the width of the figure
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
+            font = font_settings,
+            margin=dict(l=20, r=20, t=20, b=20)
+            )
+        
+        st.plotly_chart(fig_diverging,use_container_width=True)
+    
+    with col3_2:
+        st.markdown("Based on what you now know, consider where you were :red[**AFTER**] using InPlace. Indicate your agreement to the following statements.")
+
+        # List of specific columns to be plotted
+        Question_1B = ['1.2.A', '1.2.B', '1.2.C', '1.2.D', '1.2.E', '1.2.F', '1.2.G', '1.2.H', '1.2.I', '1.2.J']
+        
+        # Create a mapping from original column names to new labels ("A", "B", "C", etc.)
+        new_labels = [chr(65 + i) for i in range(len(Question_1B))]
+        column_label_mapping = dict(zip(Question_1B, new_labels[::-1]))
+        
+        # Convert numerical responses to Likert scale labels
+        likert_labels = {1: 'Strongly disagree', 2: 'Disagree', 3: 'Neutral', 4: 'Agree', 5: 'Strongly agree'}
+        
+        # Initialize a DataFrame to store the frequency counts
+        frequency_data_1 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
+        hover_data_1 = {'Question': [], 'Strongly disagree': [], 'Disagree': [], 'Neutral': [], 'Agree': [], 'Strongly agree': []}
+        
+        # Count the frequency of each Likert response for each question and convert to percentage
+        for question in Question_1B:
+            frequency_data_1['Question'].append(column_label_mapping[question])
+            hover_data_1['Question'].append(column_label_mapping[question])
+            counts = df_post[question].value_counts().sort_index()
+            for key, label in likert_labels.items():
+                count = counts.get(key, 0)
+                percentage = (count / total_entries) * 100
+                frequency_data_1[label].append(percentage)
+                hover_data_1[label].append(count)
+        
+        # Create the frequency DataFrame
+        frequency_df_post_1 = pd.DataFrame(frequency_data_1)
+        hover_df_post_1 = pd.DataFrame(hover_data_1)
+        total_height = bar_height * len(frequency_df_post_1)
+        
+        # Create the diverging bar chart
+        fig_diverging = go.Figure()
+        
+        colors = ['#de425b', '#f3babc', '#f1f1f1', '#aecdc2', '#488f31']
+        
+        for label, color in zip(likert_labels.values(), colors):
+            fig_diverging.add_trace(go.Bar(
+                y=frequency_df_post_1['Question'],
+                x=frequency_df_post_1[label],
+                name=label,
+                orientation='h',
+                marker=dict(color=color),
+                text=hover_df_post_1[label],
+                hovertemplate='%{text} responses'
+            ))
+        
+        
+        # Add a vertical dashed line at 50%
+        fig_diverging.add_shape(
+            type='line',
+            x0=50,
+            y0=-0.5,
+            x1=50,
+            y1=len(frequency_df_post_1['Question']) - 0.5,
+            line=dict(
+                color='Black',
+                width=2,
+                dash='dash',
+            ),
+        )
+        
+        fig_diverging.update_layout(
+            barmode='relative',
+            xaxis_title='Percentage (%)',
+            yaxis_title='Post-Intervention Question 1.1.B',
+            legend_title='Responses',
+            xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+            width=1100,  # Set the width of the figure
+            height=total_height,   # Set the height of the figure
+            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
+            font = font_settings,
+            margin=dict(l=20, r=20, t=20, b=20)
+            )
+        
+        st.plotly_chart(fig_diverging,use_container_width=True)
