@@ -1642,14 +1642,11 @@ with tabs[3]:
         
         fig_diverging.update_layout(
             barmode='relative',
-            xaxis_title='Percentage (%)',
-            yaxis_title='Post-Intervention Question 1.1.B',
-            legend_title='Responses',
+            xaxis_title='Resposes',
             xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
             font = font_settings,
             margin=dict(l=20, r=20, t=20, b=20)
             )
