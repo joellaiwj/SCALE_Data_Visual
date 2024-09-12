@@ -1562,16 +1562,14 @@ with tabs[3]:
         
         fig_diverging.update_layout(
             barmode='relative',
-            xaxis_title='Percentage (%)',
-            yaxis_title='Post-Intervention Question 1.1.A',
-            legend_title='Responses',
+            xaxis_title='Responses',
             xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
-            legend=dict(traceorder='reversed', font=dict(size=text_size1), title_font=dict(size=text_size2)),
             font = font_settings,
-            margin=dict(l=20, r=20, t=20, b=20)
+            margin=dict(l=20, r=20, t=20, b=20),
+            showlegend=False
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
@@ -1648,7 +1646,8 @@ with tabs[3]:
             width=1100,  # Set the width of the figure
             height=total_height,   # Set the height of the figure
             font = font_settings,
-            margin=dict(l=20, r=20, t=20, b=20)
+            margin=dict(l=20, r=20, t=20, b=20),
+            showlegend=False
             )
         
         st.plotly_chart(fig_diverging,use_container_width=True)
