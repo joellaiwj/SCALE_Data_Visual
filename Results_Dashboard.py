@@ -258,7 +258,8 @@ with tabs[1]:
             x=0.5,
             xanchor='center',
             y=-0.12,  # Position below the chart
-            yanchor='top'
+            yanchor='top',
+            color='black'
         ),
         font=font_settings,
         margin=dict(l=20, r=20, t=20, b=20),
