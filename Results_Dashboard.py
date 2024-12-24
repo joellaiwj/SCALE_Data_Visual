@@ -549,10 +549,22 @@ with tabs[1]:
     
     fig_diverging.update_layout(
         barmode='relative',
-        xaxis_title='Percentage (%)',
-        yaxis_title='Questions 3.3 & 3.6',
-        xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
-        yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+        xaxis=dict(
+            showgrid=False,
+            tickfont=dict(size=text_size1, color='black'),  # Set x-axis tick font color to black
+            title=dict(
+                text='Percentage (%)',  # Title text
+                font=dict(size=text_size2, color='black')  # Explicitly set title font color to black
+            )
+        ),
+        yaxis=dict(
+            showgrid=False,
+            tickfont=dict(size=text_size1, color='black'),  # Set y-axis tick font color to black
+            title=dict(
+                text='Rate agreement to these Statements',  # Title text
+                font=dict(size=text_size2, color='black')  # Explicitly set title font color to black
+            )
+        ),
         #width=1100,
         height=total_height_with_padding,
             legend=dict(
