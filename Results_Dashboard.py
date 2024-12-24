@@ -246,10 +246,22 @@ with tabs[1]:
     
     fig_diverging.update_layout(
         barmode='relative',
-        xaxis_title='Percentage (%)',
-        yaxis_title='Importance of these factors when choosing an elective course',
-        xaxis=dict(showgrid=False, tickfont=dict(size=text_size1, color='black'), title_font=dict(size=text_size2), color='black'),
-        yaxis=dict(showgrid=False, tickfont=dict(size=text_size1, color='black'), title_font=dict(size=text_size2), color='black'),
+        xaxis=dict(
+            showgrid=False,
+            tickfont=dict(size=text_size1, color='black'),  # Set x-axis tick font color to black
+            title=dict(
+                text='Percentage (%)',  # Title text
+                font=dict(size=text_size2, color='black')  # Explicitly set title font color to black
+            )
+        ),
+        yaxis=dict(
+            showgrid=False,
+            tickfont=dict(size=text_size1, color='black'),  # Set y-axis tick font color to black
+            title=dict(
+                text='Importance of these factors when choosing an elective course',  # Title text
+                font=dict(size=text_size2, color='black')  # Explicitly set title font color to black
+            )
+        ),
         #width=1100,
         height=total_height_with_padding,
         legend=dict(
@@ -260,7 +272,7 @@ with tabs[1]:
             y=-0.12,  # Position below the chart
             yanchor='top'
         ),
-        font=dict(color='black'),
+        font=font_setting
         margin=dict(l=20, r=20, t=20, b=20),
         bargap=0.5
     )
