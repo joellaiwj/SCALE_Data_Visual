@@ -18,7 +18,7 @@ from scipy.spatial.distance import cdist
 # Font size settings
 font_settings = dict(
     family="Arial, sans-serif",
-    size=20,
+    size=16,
     color='black'
 )
 
