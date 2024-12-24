@@ -18,8 +18,8 @@ from scipy.spatial.distance import cdist
 # Font size settings
 font_settings = dict(
     family="Arial, sans-serif",
-    size=16,
-    color="black"
+    size=20,
+    color='black'
 )
 
 # Font and Figure Settings
@@ -261,7 +261,6 @@ with tabs[1]:
             yanchor='top'
         ),
         font=font_settings,
-        font=dict(color='black'),
         margin=dict(l=20, r=20, t=20, b=20),
         bargap=0.5
     )
