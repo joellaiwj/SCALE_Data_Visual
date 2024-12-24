@@ -23,7 +23,7 @@ font_settings = dict(
 )
 
 # Font and Figure Settings
-bar_height = 50
+bar_height = 60
 text_size1 = 20
 text_size2 = 24
 
