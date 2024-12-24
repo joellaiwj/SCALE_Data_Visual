@@ -241,7 +241,8 @@ with tabs[1]:
             xanchor='center',  # Anchor the text to the center
             yanchor='bottom',  # Anchor the text to the bottom
             font=dict(size=text_size1),  # Adjust font size as needed
-            bgcolor='white'
+            bgcolor='white',
+            text_color='black'
         )
     
     fig_diverging.update_layout(
