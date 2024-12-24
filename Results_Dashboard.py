@@ -260,7 +260,7 @@ with tabs[1]:
             y=-0.12,  # Position below the chart
             yanchor='top'
         ),
-        font=font_settings,
+        font=dict(color='black'),
         margin=dict(l=20, r=20, t=20, b=20),
         bargap=0.5
     )
