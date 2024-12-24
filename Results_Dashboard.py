@@ -240,7 +240,7 @@ with tabs[1]:
             showarrow=False,  # Hide the arrow
             xanchor='center',  # Anchor the text to the center
             yanchor='bottom',  # Anchor the text to the bottom
-            font=dict(size=text_size1),  # Adjust font size as needed
+            font=dict(size=text_size1, color='black'),  # Adjust font size as needed
             bgcolor='white',
         )
     
@@ -258,8 +258,7 @@ with tabs[1]:
             x=0.5,
             xanchor='center',
             y=-0.12,  # Position below the chart
-            yanchor='top',
-            color='black'
+            yanchor='top'
         ),
         font=font_settings,
         margin=dict(l=20, r=20, t=20, b=20),
