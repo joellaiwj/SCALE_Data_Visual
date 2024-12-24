@@ -248,8 +248,8 @@ with tabs[1]:
         barmode='relative',
         xaxis_title='Percentage (%)',
         yaxis_title='Importance of these factors when choosing an elective course',
-        xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
-        yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
+        xaxis=dict(showgrid=False, tickfont=dict(size=text_size1, color='black'), title_font=dict(size=text_size2), color='black'),
+        yaxis=dict(showgrid=False, tickfont=dict(size=text_size1, color='black'), title_font=dict(size=text_size2), color='black'),
         #width=1100,
         height=total_height_with_padding,
         legend=dict(
