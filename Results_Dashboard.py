@@ -561,7 +561,7 @@ with tabs[1]:
             showgrid=False,
             tickfont=dict(size=text_size1, color='black'),  # Set y-axis tick font color to black
             title=dict(
-                text='Rate agreement to these Statements',  # Title text
+                text='Rate agreement to these statements',  # Title text
                 font=dict(size=text_size2, color='black')  # Explicitly set title font color to black
             )
         ),
