@@ -242,13 +242,12 @@ with tabs[1]:
             yanchor='bottom',  # Anchor the text to the bottom
             font=dict(size=text_size1),  # Adjust font size as needed
             bgcolor='white',
-            text_color='black'
         )
     
     fig_diverging.update_layout(
         barmode='relative',
         xaxis_title='Percentage (%)',
-        yaxis_title='Question 2.1',
+        yaxis_title='Importance of these factors when choosing an elective course',
         xaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
         yaxis=dict(showgrid=False, tickfont=dict(size=text_size1), title_font=dict(size=text_size2)),
         #width=1100,
