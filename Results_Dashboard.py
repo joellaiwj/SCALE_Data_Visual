@@ -24,7 +24,7 @@ font_settings = dict(
 
 # Font and Figure Settings
 bar_height = 50
-text_size1 = 50
+text_size1 = 24
 text_size2 = 24
 
 # Function to extract abbreviation from text in brackets
